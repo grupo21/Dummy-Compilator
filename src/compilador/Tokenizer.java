@@ -1,6 +1,5 @@
 package compilador;
 
-import java.io.IOException;
 import java.io.Reader;
 import java.util.Enumeration;
 import java.util.LinkedList;
@@ -93,7 +92,7 @@ public class Tokenizer implements Enumeration {
             Matcher idmatcher = Patterns.IDENT.matcher(match);
             Matcher floatmatcher = Patterns.FLOAT.matcher(match);
             Matcher intmatcher = Patterns.INTEGER.matcher(match);
-            Matcher asignmatcher = Patterns.ASIGN.matcher(match);
+            Matcher doublematcher = Patterns.SPECIALDOUBLE.matcher(match);
             Matcher specialmatcher = Patterns.SPECIALCHAR.matcher(match);
 
             /**
@@ -125,9 +124,9 @@ public class Tokenizer implements Enumeration {
                 cola.add(new Token(intmatcher.group(), TokenType.INTEGER));
                 match = match.substring(intmatcher.end());
 
-            } else if (asignmatcher.lookingAt()) {
-                cola.add(new Token(asignmatcher.group(), TokenType.ASIGN));
-                match = match.substring(asignmatcher.end());
+            } else if (doublematcher.lookingAt()) {
+                cola.add(new Token(doublematcher.group(), TokenType.SPECIALDOUBLE));
+                match = match.substring(doublematcher.end());
 
             } else if (specialmatcher.lookingAt()) {
                 cola.add(new Token(specialmatcher.group(), TokenType.SPECIALCHAR));

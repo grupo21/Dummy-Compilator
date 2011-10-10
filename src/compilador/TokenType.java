@@ -18,7 +18,7 @@ public class TokenType {
     public static final int IDENTIFIER = 1;
     public static final int INTEGER = 2;
     public static final int FLOAT = 3;
-    public static final int ASIGN = 4;
+    public static final int SPECIALDOUBLE = 4;
     public static final int SPECIALCHAR = 5;
     
     private static final String[] RESERVEDWORDS = {
@@ -46,8 +46,8 @@ public class TokenType {
                 return "entero";
             case FLOAT:
                 return "real";
-            case ASIGN:
-                return "asignacion";
+            case SPECIALDOUBLE:
+                return "especial doble";
             case SPECIALCHAR:
                 return "caracter especial";
             default:
