@@ -1,0 +1,22 @@
+program ejemplo is
+    var a,b,c : integer;
+    var d,e : float; {* esto es un comentario *}
+    procedure sumar (x,y: in integer; resul: in out integer) is
+        var aux:integer;
+    begin
+        repeat
+            aux:=a;
+            c:=b;
+            aux := aux – 1 ;
+            c := c+1;
+        until aux > 0 endrepeat ;
+    endprocedure sumar;
+    begin
+        get(a);
+        get(b);
+        d:= 1/b;
+        e:= 1/a;
+        sumar(a,b,c);
+        c:= c*(c*d)+e;
+        put_line(c*c);
+endprogram;
