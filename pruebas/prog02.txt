@@ -1,0 +1,9 @@
+begin
+a := a ++ 3 -4;
+procedure prueba (in: x1, out: x2) is
+	x1:=x1+5;
+	x2:=x1; {* +ç´ {* Esto es un comentario dentro de otro *}  ^***-.*}
+endprocedure
+return x2;
+
+end;
