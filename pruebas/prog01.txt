@@ -7,7 +7,7 @@ program ejemplo is
         repeat
             aux:=a;
             c:=b;
-            aux := aux – 1 ;
+            aux := aux - 1 ;
             c := c+1;
         until aux > 0 endrepeat ;
     endprocedure sumar;
