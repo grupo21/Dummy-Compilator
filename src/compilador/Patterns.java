@@ -14,8 +14,8 @@ import java.util.regex.Pattern;
  */
 public class Patterns {
     
-    public static final Pattern INTEGER = Pattern.compile("[+-]?[0-9]+");
-    public static final Pattern FLOAT = Pattern.compile("[+-]?[0-9]+\\.[0-9]+([eE][+-]?[0-9]+)?");
+    public static final Pattern INTEGER = Pattern.compile("[0-9]+");
+    public static final Pattern FLOAT = Pattern.compile("[0-9]+\\.[0-9]+([eE][+-]?[0-9]+)?");
     public static final Pattern COMMENT = Pattern.compile("\\{\\*([^*]|(\\*+[^*}]))*\\*+\\}", Pattern.MULTILINE);
     public static final Pattern IDENT = Pattern.compile("[a-zA-Z](_?[a-zA-Z0-9])*");
     public static final Pattern SPECIALDOUBLE = Pattern.compile("(:=|<=|>=)");
