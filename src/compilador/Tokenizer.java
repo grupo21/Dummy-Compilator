@@ -117,11 +117,11 @@ public class Tokenizer implements Enumeration {
                 match = match.substring(idmatcher.end());
 
             } else if (floatmatcher.lookingAt()) {
-                cola.add(new Token(floatmatcher.group(), TokenType.FLOAT));
+                cola.add(new FloatToken(floatmatcher.group(), TokenType.FLOAT));
                 match = match.substring(floatmatcher.end());
 
             } else if (intmatcher.lookingAt()) {
-                cola.add(new Token(intmatcher.group(), TokenType.INTEGER));
+                cola.add(new IntegerToken(intmatcher.group(), TokenType.INTEGER));
                 match = match.substring(intmatcher.end());
 
             } else if (doublematcher.lookingAt()) {
