@@ -103,7 +103,7 @@ public class Tokenizer implements Enumeration {
                 /**
                  * Si es una palabra reservada se marca como tal.
                  */
-                if (TokenType.isReserved(match)) {
+                if (TokenType.isReserved(match.group())) {
                     /**
                      * Se guarda en la cola de tokens...
                      */
