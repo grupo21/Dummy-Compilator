@@ -32,7 +32,7 @@ public class TokenType {
 
     /**
      * Devuelve la representación en string del tipo num, para poder ser impreso
-     * y hacer unat traza.
+     * y hacer una traza.
      * @param num El identificador del tipo.
      * @return La representación en String del Tipo.
      */
@@ -56,7 +56,7 @@ public class TokenType {
     }
     
     /**
-     * Comprueba si el identificador id es una palabra reservar, utilizando
+     * Comprueba si el identificador id es una palabra reservada, utilizando
      * una tabla de todas las palabras reservadas.
      * @param id El identificador a analizar.
      * @return True si id es una palabra reservada, falso en caso contrario.

@@ -94,7 +94,7 @@ public class Tokenizer implements Enumeration {
             Matcher intmatcher = Patterns.INTEGER.matcher(match);
             Matcher doublematcher = Patterns.SPECIALDOUBLE.matcher(match);
             Matcher specialmatcher = Patterns.SPECIALCHAR.matcher(match);
-
+            
             /**
              * Se comprueba si coincide en el inicio con lookingAt(),
              * y si lo hace guarda los puntos de inicio y final.
@@ -103,7 +103,7 @@ public class Tokenizer implements Enumeration {
                 /**
                  * Si es una palabra reservada se marca como tal.
                  */
-                if (TokenType.isReserved(match.group())) {
+                if (TokenType.isReserved(match)) {
                     /**
                      * Se guarda en la cola de tokens...
                      */
