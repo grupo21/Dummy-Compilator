@@ -4,6 +4,7 @@
  */
 package compilador;
 
+import compilador.ETDS.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -26,6 +27,7 @@ public class Compilador {
         
         BufferedReader buffer = null;
         Tokenizer tokenizer;
+        AbstractETDS program;
         
         if (args.length > 0) {
             try {
@@ -39,9 +41,7 @@ public class Compilador {
         }
 
         tokenizer = new Tokenizer(buffer);
-        while (tokenizer.hasMoreElements()) {
-            Token token = tokenizer.nextElement();
-            token.printInfo();
-        }
+        program = new Program();
+        program.execute(null);
     }
 }
