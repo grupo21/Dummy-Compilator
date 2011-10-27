@@ -23,6 +23,10 @@ public class Token implements Cloneable {
         this.type = type;
     }
     
+    public String getMatch() {
+        return this.match;
+    }
+    
     /**
      * Imprime en pantalla información debug sobre el token
      */
