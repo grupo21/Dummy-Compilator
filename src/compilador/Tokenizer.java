@@ -16,6 +16,8 @@ import java.util.regex.Matcher;
  */
 public class Tokenizer implements Enumeration {
     
+    public static Tokenizer tokenizer;
+    
     private Scanner scanner;
     private Token current;
     private Queue<Token> cola;
@@ -24,6 +26,7 @@ public class Tokenizer implements Enumeration {
         scanner = new Scanner(reader);
         cola = new LinkedList<Token>();
         current = null;
+        tokenizer = this;
     }
 
     /**
