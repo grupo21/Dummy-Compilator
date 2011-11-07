@@ -12,4 +12,6 @@ public interface Instruction {
     
     public String getText();    
     public boolean isComplete();
+    
+    public void complete(Marker marker);
 }

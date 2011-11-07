@@ -18,4 +18,24 @@ public class InstructionList {
     public InstructionList() {
         instructions = new ArrayList<Instruction>();
     }
+    
+    public void add(Instruction instruction) {
+        instructions.add(instruction);
+    }
+    
+    public Instruction get(int ref) {
+        return instructions.get(ref);
+    }
+    
+    public Instruction get(Marker marker) {
+        if (marker.getList() != this) {
+            throw new IllegalArgumentException();
+        }
+        
+        return get(marker.getIndex());
+    }
+    
+    public Marker getCurrentMarker() {
+        return new Marker(this, instructions.size());
+    }
 }
