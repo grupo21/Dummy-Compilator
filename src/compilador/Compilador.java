@@ -40,5 +40,10 @@ public class Compilador {
 
         context = new CompilerContext(input, output);
         context.compile();
+        try {
+            context.print();
+        } catch (IOException ex) {
+            Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

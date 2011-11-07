@@ -5,13 +5,14 @@
 package compiladorIntermediate;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  *
  * @author gmaiztegi
  */
-public class InstructionList {
+public class InstructionList implements Iterable {
     
     protected List<Instruction> instructions;
     
@@ -37,5 +38,10 @@ public class InstructionList {
     
     public Marker getCurrentMarker() {
         return new Marker(this, instructions.size());
+    }
+
+    @Override
+    public Iterator<Instruction> iterator() {
+        return instructions.iterator();
     }
 }
