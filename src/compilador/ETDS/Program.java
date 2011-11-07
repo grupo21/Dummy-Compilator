@@ -22,7 +22,7 @@ public class Program extends AbstractETDS {
     }
     
     @Override
-    public void execute(ETDS parent) {
+    public void execute() {
         this.expectString("program");
         id = this.expectType(TokenType.IDENTIFIER);
         this.expectString("is");

@@ -10,5 +10,5 @@ package compilador.ETDS;
  */
 public interface ETDS {
     
-    public void execute(ETDS parent);
+    public void execute();
 }
