@@ -4,6 +4,7 @@
  */
 package compilador;
 
+import compilador.Token.Tokenizer;
 import compilador.ETDS.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

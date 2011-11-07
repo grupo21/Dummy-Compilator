@@ -1,4 +1,4 @@
-package compilador;
+package compilador.Token;
 
 /**
  * Clase que representa a un Token y su información

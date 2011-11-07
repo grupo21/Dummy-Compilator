@@ -1,4 +1,4 @@
-package compilador;
+package compilador.Token;
 
 import java.io.Reader;
 import java.util.Enumeration;

@@ -4,6 +4,7 @@
  */
 package compilador.ETDS;
 
+import compilador.Token.*;
 import compilador.*;
 
 /**

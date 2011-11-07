@@ -2,25 +2,25 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package compilador;
+package compilador.Token;
 
 /**
- * Programa de prueba para el analizador léxico
+ * Token representando un flotante
  * @author Jon Aguirre <jaguirre026@ehu.es>
  * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
  * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
-public class IntegerToken extends Token {
-
-    protected int value;
+public class FloatToken extends Token {
     
-    public IntegerToken(String match, int type) {
+    protected float value;
+
+    public FloatToken(String match, int type) {
         super(match, type);
         
-        this.value = Integer.parseInt(match);
+        Float.parseFloat(match);
     }
     
-    public int getValue() {
+    public float getValue() {
         return this.value;
     }
 }
