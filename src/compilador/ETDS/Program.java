@@ -16,9 +16,13 @@ import compilador.*;
 public class Program extends AbstractETDS {
     
     private Token id;
-
+    
+    public Program(CompilerContext context) {
+        super(context);
+    }
+    
     @Override
-    public void execute(AbstractETDS parent) {
+    public void execute(ETDS parent) {
         this.expectString("program");
         id = this.expectType(TokenType.IDENTIFIER);
         this.expectString("is");

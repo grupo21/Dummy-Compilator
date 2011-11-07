@@ -4,12 +4,7 @@
  */
 package compilador;
 
-import compilador.Token.Tokenizer;
-import compilador.ETDS.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,23 +21,24 @@ public class Compilador {
      */
     public static void main(String[] args) {
         
-        BufferedReader buffer = null;
-        Tokenizer tokenizer;
-        AbstractETDS program;
+        Reader input = null;
+        Writer output;
+        CompilerContext context;
         
         if (args.length > 0) {
             try {
-                buffer = new BufferedReader(new FileReader(args[0]));
+                input = new BufferedReader(new FileReader(args[0]));
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, ex);
                 System.exit(1);
             }
         } else {
-            buffer = new BufferedReader(new InputStreamReader(System.in));
+            input = new BufferedReader(new InputStreamReader(System.in));
         }
+        
+        output = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        tokenizer = new Tokenizer(buffer);
-        program = new Program();
-        program.execute(null);
+        context = new CompilerContext(input, output);
+        context.compile();
     }
 }

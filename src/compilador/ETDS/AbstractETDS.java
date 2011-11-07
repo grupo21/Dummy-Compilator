@@ -13,14 +13,18 @@ import compilador.*;
  * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
  * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
-public abstract class AbstractETDS {
+public abstract class AbstractETDS implements ETDS {
     
-    public abstract void execute(AbstractETDS parent);
+    protected CompilerContext context;
+    
+    public AbstractETDS(CompilerContext context) {
+        this.context = context;
+    }
     
     public Token expectType(int type) {
         Token token;
         
-        token = Tokenizer.tokenizer.nextElement();
+        token = context.tokenizer.nextElement();
         
         if (!token.isType(type)) {
             throw new UnexpectedTokenException();
@@ -32,7 +36,7 @@ public abstract class AbstractETDS {
     public Token expectString(String str) {
         Token token;
         
-        token = Tokenizer.tokenizer.nextElement();
+        token = context.tokenizer.nextElement();
         
         if (!token.getMatch().equals(str)) {
             throw new UnexpectedTokenException();
