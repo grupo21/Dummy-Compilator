@@ -6,6 +6,8 @@ package compilador.ETDS;
 
 import compilador.Token.*;
 import compilador.*;
+import compilator.Symbol.RedefinedSymbolException;
+import compilator.Symbol.Symbol;
 
 /**
  * Token representando un flotante
@@ -47,5 +49,11 @@ public abstract class AbstractETDS implements ETDS {
     
     public void revert() throws Exception {
         context.tokenizer.revert();
+    }
+    
+    public Symbol addSymbol(String name, int type) throws RedefinedSymbolException {
+        Symbol symbol = new Symbol(name, type);
+        context.symbolTable.add(symbol);
+        return symbol;
     }
 }

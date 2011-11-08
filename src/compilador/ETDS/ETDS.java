@@ -4,11 +4,13 @@
  */
 package compilador.ETDS;
 
+import compilador.SemanticException;
+
 /**
  *
  * @author gmaiztegi
  */
 public interface ETDS {
     
-    public void execute() throws SyntaxException;
+    public void execute() throws SyntaxException, SemanticException;
 }

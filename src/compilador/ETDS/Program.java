@@ -6,6 +6,7 @@ package compilador.ETDS;
 
 import compilador.Token.*;
 import compilador.*;
+import compilator.Symbol.Symbol;
 
 /**
  * Token representando un flotante
@@ -15,7 +16,8 @@ import compilador.*;
  */
 public class Program extends AbstractETDS {
     
-    private Token id;
+    protected Token id;
+    protected Symbol program;
     
     public Program(CompilerContext context) {
         super(context);
@@ -24,7 +26,10 @@ public class Program extends AbstractETDS {
     @Override
     public void execute() throws SyntaxException {
         this.expectString("program");
+        
         id = this.expectType(TokenType.IDENTIFIER);
+        program = new Symbol(id.getMatch(), Symbol.PROGRAM);
+        
         this.expectString("is");
     }
 }
