@@ -44,4 +44,8 @@ public abstract class AbstractETDS implements ETDS {
         
         return token;
     }
+    
+    public void revert() throws Exception {
+        context.tokenizer.revert();
+    }
 }
