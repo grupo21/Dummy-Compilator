@@ -148,6 +148,27 @@ public class Tokenizer implements Enumeration {
          */
         this.current = cola.remove();
         
+        while (true) {
+            try {
+                /**
+                 * Se quitan los espacios antes del comentario,
+                 * Ya que el escáner no los quita con skip(), ...
+                 */
+                scanner.skip("\\s*");
+                /**
+                 * ...y después el comentario en sí...
+                 */
+                scanner.skip(Patterns.COMMENT);
+                System.out.println("Comentario eliminado");
+                
+            /**
+             * ... hasta que no haya más, donde salimos del bucle
+             */
+            } catch (NoSuchElementException e) {
+                break;
+            }
+        }
+        
         return this.current;
     }
 }
