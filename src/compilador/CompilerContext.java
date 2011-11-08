@@ -46,10 +46,12 @@ public class CompilerContext {
         int counter;
         
         iter = instructionList.iterator();
-        counter = 1;
+        counter = 0;
         
         while(iter.hasNext()) {
-            String instr = iter.next().getText();
+            Instruction instruction = iter.next();
+            String instr = instruction.getText();
+            System.out.println(counter+"\t"+instr);
             output.write(counter+"\t"+instr);
             counter++;
         }
