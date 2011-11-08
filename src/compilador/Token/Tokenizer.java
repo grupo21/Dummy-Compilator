@@ -62,7 +62,6 @@ public class Tokenizer implements Enumeration {
                  * ...y después el comentario en sí...
                  */
                 scanner.skip(Patterns.COMMENT);
-                System.out.println("Comentario eliminado");
                 
             /**
              * ... hasta que no haya más, donde salimos del bucle
@@ -159,7 +158,6 @@ public class Tokenizer implements Enumeration {
                  * ...y después el comentario en sí...
                  */
                 scanner.skip(Patterns.COMMENT);
-                System.out.println("Comentario eliminado");
                 
             /**
              * ... hasta que no haya más, donde salimos del bucle
