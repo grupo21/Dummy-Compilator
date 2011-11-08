@@ -4,10 +4,12 @@
  */
 package compilator.Symbol;
 
+import compilador.SemanticException;
+
 /**
  *
  * @author gmaiztegi
  */
-public class UndeclaredSymbolException extends Exception {
+public class UndeclaredSymbolException extends SemanticException {
     
 }
