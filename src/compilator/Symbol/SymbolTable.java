@@ -14,9 +14,11 @@ import java.util.Map;
 public class SymbolTable {
     
     protected Map<String, Symbol> table;
+    protected int tempCounter;
     
     public SymbolTable() {
         this.table = new HashMap<String, Symbol>();
+        tempCounter = 0;
     }
     
     public void add(Symbol symbol) throws RedefinedSymbolException {
@@ -50,5 +52,21 @@ public class SymbolTable {
     
     public boolean isType(String name, int type) throws UndeclaredSymbolException {
         return type == this.get(name).getType();
+    }
+    
+    public Symbol createTemporary(int type) {
+        int newId;
+        Symbol temp;
+        
+        newId = tempCounter++;
+        temp = new Symbol("_t"+newId, type);
+        try {
+            add(temp);
+        } catch (RedefinedSymbolException ex) {
+            System.err.print("Esto no debería haber pasado nunca");
+            System.exit(1);
+        }
+        
+        return temp;
     }
 }
