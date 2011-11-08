@@ -29,7 +29,7 @@ public class Compilador {
             try {
                 input = new BufferedReader(new FileReader(args[0]));
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println("Error al abrir la entrada: "+ex.getLocalizedMessage());
                 System.exit(1);
             }
         } else {
@@ -43,7 +43,8 @@ public class Compilador {
         try {
             context.print();
         } catch (IOException ex) {
-            Logger.getLogger(Compilador.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error al escribir el programa intermedio: "+ex.getLocalizedMessage());
+            System.exit(1);
         }
     }
 }
