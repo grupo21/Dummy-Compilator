@@ -17,7 +17,7 @@ import java.util.regex.Matcher;
 public class Tokenizer implements Enumeration {
     
     private Scanner scanner;
-    private Token current;
+    private Token current, previous;
     private Queue<Token> cola;
     
     public Tokenizer(Reader reader) {
@@ -30,18 +30,29 @@ public class Tokenizer implements Enumeration {
      * Devuelve el último token encontrado sin avanzar.
      * @return El último Token devuelto
      */
-    public Token getLookahead() {
+    public Token getLookahead() throws Exception {
+        if (this.previous != null) {
+            throw new Exception("No se puede obtener el actual tras revertir.");
+        }
+        
         return this.current;
     }
     
     @Override
     public boolean hasMoreElements() {
-        return !cola.isEmpty() || scanner.hasNext();
+        return previous != null || !cola.isEmpty() || scanner.hasNext();
     }
 
     @Override
     public Token nextElement() throws NoSuchElementException {
         String match;
+        
+        if (previous != null) {
+            current = previous;
+            previous = null;
+            
+            return current;
+        }
         
         /**
          * Si ya había un token analizado anteriormente lo devolvemos y
@@ -168,5 +179,15 @@ public class Tokenizer implements Enumeration {
         }
         
         return this.current;
+    }
+    
+    public void revert() throws Exception {
+        
+        if (current == null) {
+            throw new Exception("No se puede revertir si no hay un elemento todavía.");
+        }
+        
+        previous = current;
+        current = null;
     }
 }
