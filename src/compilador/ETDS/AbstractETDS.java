@@ -6,8 +6,8 @@ package compilador.ETDS;
 
 import compilador.Token.*;
 import compilador.*;
-import compilator.Symbol.RedefinedSymbolException;
-import compilator.Symbol.Symbol;
+import compiladorIntermediate.*;
+import compilator.Symbol.*;
 
 /**
  * Token representando un flotante
@@ -26,10 +26,14 @@ public abstract class AbstractETDS implements ETDS {
     public Token expectType(int type) throws SyntaxException {
         Token token;
         
+        if (!context.tokenizer.hasMoreElements()) {
+            throw new SyntaxException("Se esperaba token del tipo "+TokenType.toString(type)+" pero el archivo se ha acabado.");
+        }
+        
         token = context.tokenizer.nextElement();
         
         if (!token.isType(type)) {
-            throw new SyntaxException();
+            throw new SyntaxException("Se esperaba token del tipo "+TokenType.toString(type)+" pero se ha encontrado "+TokenType.toString(token.getType()));
         }
         
         return token;
@@ -38,16 +42,21 @@ public abstract class AbstractETDS implements ETDS {
     public Token expectString(String str) throws SyntaxException {
         Token token;
         
+        
+        if (!context.tokenizer.hasMoreElements()) {
+            throw new SyntaxException("Se esperaba \""+str+"\", se ha obtenido fin de archivo.");
+        }
+        
         token = context.tokenizer.nextElement();
         
         if (!token.getMatch().equals(str)) {
-            throw new SyntaxException();
+            throw new SyntaxException("Se esperaba \""+str+"\", se ha obtenido \""+token.getMatch()+"\".");
         }
         
         return token;
     }
     
-    public void revert() throws Exception {
+    public void revert() {
         context.tokenizer.revert();
     }
     
@@ -55,5 +64,13 @@ public abstract class AbstractETDS implements ETDS {
         Symbol symbol = new Symbol(name, type);
         context.symbolTable.add(symbol);
         return symbol;
+    }
+    
+    public void addInstruction(Instruction instruction) {
+        context.instructionList.add(instruction);
+    }
+    
+    public Marker getMarker() {
+        return context.instructionList.getCurrentMarker();
     }
 }

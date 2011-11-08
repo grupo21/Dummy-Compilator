@@ -181,10 +181,10 @@ public class Tokenizer implements Enumeration {
         return this.current;
     }
     
-    public void revert() throws Exception {
+    public void revert() {
         
         if (current == null) {
-            throw new Exception("No se puede revertir si no hay un elemento todavía.");
+            throw new RuntimeException("No se puede revertir si no hay un elemento todavía.");
         }
         
         previous = current;

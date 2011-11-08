@@ -9,5 +9,12 @@ package compilador;
  * @author gmaiztegi
  */
 public class CompilerException extends Exception {
+
+    public CompilerException() {
+    }
+
+    public CompilerException(String string) {
+        super(string);
+    }
     
 }

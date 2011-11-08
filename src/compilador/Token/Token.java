@@ -35,6 +35,10 @@ public class Token implements Cloneable {
         System.out.println(this.match+"\t\t"+TokenType.toString(this.type));
     }
     
+    public int getType() {
+        return this.type;
+    }
+    
     /**
      * Comprueba que el token sea del tipo indicado
      * @param type Identificador del tipo de token

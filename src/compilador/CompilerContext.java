@@ -41,13 +41,9 @@ public class CompilerContext {
         top.execute();
     }
     
-    public void print() throws IOException, CompilerException {
+    public void print() throws IOException {
         Iterator<Instruction> iter;
         int counter;
-        
-        if (tokenizer.hasMoreElements()) {
-            this.compile();
-        }
         
         iter = instructionList.iterator();
         counter = 1;
