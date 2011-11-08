@@ -4,9 +4,11 @@
  */
 package compilador.ETDS;
 
+import compilador.CompilerException;
+
 /**
  *
  * @author gmaiztegi
  */
-public class SyntaxException extends Exception {
+public class SyntaxException extends CompilerException {
 }

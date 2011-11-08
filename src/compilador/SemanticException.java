@@ -8,6 +8,6 @@ package compilador;
  *
  * @author gmaiztegi
  */
-public class SemanticException extends Exception {
+public class SemanticException extends CompilerException {
     
 }

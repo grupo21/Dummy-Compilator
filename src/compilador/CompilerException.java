@@ -2,15 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package compilador.ETDS;
-
-import compilador.CompilerException;
+package compilador;
 
 /**
  *
  * @author gmaiztegi
  */
-public interface ETDS {
+public class CompilerException extends Exception {
     
-    public void execute() throws CompilerException;
 }

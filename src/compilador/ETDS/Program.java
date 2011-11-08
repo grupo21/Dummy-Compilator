@@ -6,6 +6,7 @@ package compilador.ETDS;
 
 import compilador.Token.*;
 import compilador.*;
+import compilator.Symbol.RedefinedSymbolException;
 import compilator.Symbol.Symbol;
 
 /**
@@ -24,11 +25,11 @@ public class Program extends AbstractETDS {
     }
     
     @Override
-    public void execute() throws SyntaxException {
+    public void execute() throws SyntaxException, RedefinedSymbolException {
         this.expectString("program");
         
         id = this.expectType(TokenType.IDENTIFIER);
-        program = new Symbol(id.getMatch(), Symbol.PROGRAM);
+        program = addSymbol(id.getMatch(), Symbol.PROGRAM);
         
         this.expectString("is");
     }
