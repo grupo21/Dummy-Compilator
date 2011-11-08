@@ -8,8 +8,6 @@ package compiladorIntermediate;
  *
  * @author gmaiztegi
  */
-public interface Instruction {
-    
-    public String getText();    
-    public boolean isComplete();
+public interface CompletableInstruction extends Instruction {
+    public void complete(Marker marker);
 }
