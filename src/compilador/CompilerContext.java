@@ -33,7 +33,7 @@ public class CompilerContext {
         this.output = output;
     }
     
-    public void compile() {
+    public void compile() throws SyntaxException {
         ETDS top;
         
         top = new Program(this);
@@ -41,7 +41,7 @@ public class CompilerContext {
         top.execute();
     }
     
-    public void print() throws IOException {
+    public void print() throws IOException, SyntaxException {
         Iterator<Instruction> iter;
         int counter;
         

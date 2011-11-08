@@ -22,7 +22,7 @@ public class Program extends AbstractETDS {
     }
     
     @Override
-    public void execute() {
+    public void execute() throws SyntaxException {
         this.expectString("program");
         id = this.expectType(TokenType.IDENTIFIER);
         this.expectString("is");

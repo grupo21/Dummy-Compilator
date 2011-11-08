@@ -19,7 +19,7 @@ public class SymbolTable {
         this.table = new HashMap<String, Symbol>();
     }
     
-    public void add(Symbol symbol) {
+    public void add(Symbol symbol) throws RedefinedSymbolException {
         
         if (table.containsKey(symbol.getName())) {
             throw new RedefinedSymbolException();
@@ -28,7 +28,7 @@ public class SymbolTable {
         table.put(symbol.getName(), symbol);
     }
     
-    public Symbol get(String name) {
+    public Symbol get(String name) throws UndeclaredSymbolException {
         Symbol symbol;
         
         symbol = table.get(name);
@@ -44,11 +44,11 @@ public class SymbolTable {
         return table.containsKey(name);
     }
     
-    public int getType(String name) {
+    public int getType(String name) throws UndeclaredSymbolException {
         return this.get(name).getType();
     }
     
-    public boolean isType(String name, int type) {
+    public boolean isType(String name, int type) throws UndeclaredSymbolException {
         return type == this.get(name).getType();
     }
 }

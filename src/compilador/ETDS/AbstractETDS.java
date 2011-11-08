@@ -21,25 +21,25 @@ public abstract class AbstractETDS implements ETDS {
         this.context = context;
     }
     
-    public Token expectType(int type) {
+    public Token expectType(int type) throws SyntaxException {
         Token token;
         
         token = context.tokenizer.nextElement();
         
         if (!token.isType(type)) {
-            throw new UnexpectedTokenException();
+            throw new SyntaxException();
         }
         
         return token;
     }
     
-    public Token expectString(String str) {
+    public Token expectString(String str) throws SyntaxException {
         Token token;
         
         token = context.tokenizer.nextElement();
         
         if (!token.getMatch().equals(str)) {
-            throw new UnexpectedTokenException();
+            throw new SyntaxException();
         }
         
         return token;

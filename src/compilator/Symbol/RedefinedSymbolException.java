@@ -8,6 +8,6 @@ package compilator.Symbol;
  *
  * @author gmaiztegi
  */
-public class RedefinedSymbolException extends RuntimeException {
+public class RedefinedSymbolException extends Exception {
     
 }

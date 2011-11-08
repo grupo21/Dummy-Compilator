@@ -8,6 +8,6 @@ package compilator.Symbol;
  *
  * @author gmaiztegi
  */
-public class UndeclaredSymbolException extends RuntimeException {
+public class UndeclaredSymbolException extends Exception {
     
 }
