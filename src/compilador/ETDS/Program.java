@@ -26,7 +26,6 @@ public class Program extends AbstractETDS {
         
         Token id;
         Symbol program;
-        Declarations decl;
         
         expectString("program");
         
@@ -37,7 +36,6 @@ public class Program extends AbstractETDS {
         
         addInstruction(new ProgInstruction(program));
         
-        decl = new Declarations(context);
-        decl.execute();
+        new Declarations(context).execute();
     }
 }
