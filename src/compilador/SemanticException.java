@@ -10,4 +10,11 @@ package compilador;
  */
 public class SemanticException extends CompilerException {
     
+    public SemanticException() {
+        super();
+    }
+
+    public SemanticException(String string) {
+        super(string);
+    }
 }
