@@ -20,10 +20,12 @@ public class SubprogramDeclarations extends AbstractETDS {
     public void execute() throws CompilerException {
         try {
             new SubprogramDeclaration(context).execute();
-            new SubprogramDeclarations(context).execute();
         } catch (SyntaxException ex) {
             revert();
+            return;
         }
+        
+        new SubprogramDeclarations(context).execute();
     }
     
 }
