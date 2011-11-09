@@ -18,7 +18,25 @@ public class SubprogramDeclaration extends AbstractETDS {
 
     @Override
     public void execute() throws CompilerException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        SubprogramHeader header;
+        OptionalIdentifier optid;
+        
+        header = new SubprogramHeader(context);
+        header.execute();
+        
+        new Declarations(context).execute();
+        
+        expectString("begin");
+        
+        new SentenceList(context).execute();
+        
+        expectString("endprocedure");
+        
+        optid = new OptionalIdentifier(context);
+        
+        expectString(";");
+        
+        // Comprobar que los ids del principio y final son iguales.
     }
     
 }
