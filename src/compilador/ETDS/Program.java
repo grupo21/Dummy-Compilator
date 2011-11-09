@@ -6,6 +6,7 @@ package compilador.ETDS;
 
 import compilador.Token.*;
 import compilador.*;
+import compiladorIntermediate.ProgInstruction;
 import compilator.Symbol.Symbol;
 
 /**
@@ -33,6 +34,8 @@ public class Program extends AbstractETDS {
         program = addSymbol(id.getMatch(), Symbol.PROGRAM);
         
         expectString("is");
+        
+        addInstruction(new ProgInstruction(program));
         
         decl = new Declarations(context);
         decl.execute();
