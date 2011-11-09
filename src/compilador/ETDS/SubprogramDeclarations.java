@@ -4,10 +4,26 @@
  */
 package compilador.ETDS;
 
+import compilador.*;
+
 /**
  *
  * @author gmaiztegi
  */
-public class SubprogramDeclarations {
+public class SubprogramDeclarations extends AbstractETDS {
+    
+    public SubprogramDeclarations(CompilerContext context) {
+        super(context);
+    }
+
+    @Override
+    public void execute() throws CompilerException {
+        try {
+            new SubprogramDeclaration(context).execute();
+            new SubprogramDeclarations(context).execute();
+        } catch (SyntaxException ex) {
+            revert();
+        }
+    }
     
 }
