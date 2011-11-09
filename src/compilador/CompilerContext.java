@@ -9,9 +9,7 @@ import compiladorIntermediate.InstructionList;
 import compilador.Token.Tokenizer;
 import compiladorIntermediate.Instruction;
 import compilator.Symbol.SymbolTable;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.*;
 import java.util.Iterator;
 
 /**
@@ -24,13 +22,13 @@ public class CompilerContext {
     public InstructionList instructionList;
     public SymbolTable symbolTable;
     
-    protected Writer output;
+    protected PrintWriter output;
     
     public CompilerContext(Reader input, Writer output) {
         this.tokenizer = new Tokenizer(input);
         this.symbolTable = new SymbolTable();
         this.instructionList = new InstructionList();
-        this.output = output;
+        this.output = new PrintWriter(output, true);
     }
     
     public void compile() throws CompilerException {
@@ -51,8 +49,7 @@ public class CompilerContext {
         while(iter.hasNext()) {
             Instruction instruction = iter.next();
             String instr = instruction.getText();
-            System.out.println(counter+"\t"+instr);
-            output.write(counter+"\t"+instr);
+            output.println(counter+"\t"+instr);
             counter++;
         }
     }
