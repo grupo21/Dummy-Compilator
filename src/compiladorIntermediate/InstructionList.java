@@ -20,8 +20,9 @@ public class InstructionList implements Iterable {
         instructions = new ArrayList<Instruction>();
     }
     
-    public void add(Instruction instruction) {
+    public Marker add(Instruction instruction) {
         instructions.add(instruction);
+        return new Marker(this, instructions.size()-1);
     }
     
     public Instruction get(int ref) {

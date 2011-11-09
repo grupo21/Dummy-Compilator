@@ -66,8 +66,8 @@ public abstract class AbstractETDS implements ETDS {
         return symbol;
     }
     
-    public void addInstruction(Instruction instruction) {
-        context.instructionList.add(instruction);
+    public Marker addInstruction(Instruction instruction) {
+        return context.instructionList.add(instruction);
     }
     
     public Marker getMarker() {
