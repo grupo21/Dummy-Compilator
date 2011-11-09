@@ -23,8 +23,8 @@ public class Declarations extends AbstractETDS {
     @Override
     public void execute() throws CompilerException {
         IdentifierList idList;
-        Token typeToken;
-        int type;
+        Type type;
+        
         Iterator<String> iter;
         
         try {
@@ -39,14 +39,8 @@ public class Declarations extends AbstractETDS {
 
         expectString(":");
 
-        try {
-            typeToken = expectString("float");
-            type = Symbol.FLOAT;
-        } catch (SyntaxException ex) {
-            revert();
-            typeToken = expectString("integer");
-            type = Symbol.INTEGER;
-        }
+        type = new Type(context);
+        type.execute();
         
         expectString(";");
         
@@ -54,7 +48,7 @@ public class Declarations extends AbstractETDS {
         
         while (iter.hasNext()) {
             Symbol var;
-            var = addSymbol(iter.next(), type);
+            var = addSymbol(iter.next(), type.type);
             addInstruction(new DeclarationInstruction(var));
         }
         
