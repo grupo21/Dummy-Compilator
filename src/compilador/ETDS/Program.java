@@ -29,7 +29,7 @@ public class Program extends AbstractETDS {
         
         expectString("program");
         
-        id = this.expectType(TokenType.IDENTIFIER);
+        id = expectType(TokenType.IDENTIFIER);
         program = addSymbol(id.getMatch(), Symbol.PROGRAM);
         
         expectString("is");
@@ -37,5 +37,6 @@ public class Program extends AbstractETDS {
         addInstruction(new ProgInstruction(program));
         
         new Declarations(context).execute();
+        new SubprogramDeclarations(context).execute();
     }
 }
