@@ -1,10 +1,10 @@
 package compilador.Token;
 
 import java.io.Reader;
+import java.util.Deque;
 import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
-import java.util.Queue;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 
@@ -17,8 +17,8 @@ import java.util.regex.Matcher;
 public class Tokenizer implements Enumeration {
     
     private Scanner scanner;
-    private Token current, previous;
-    private Queue<Token> cola;
+    private Token current;
+    private Deque<Token> cola;
     
     public Tokenizer(Reader reader) {
         scanner = new Scanner(reader);
@@ -31,7 +31,7 @@ public class Tokenizer implements Enumeration {
      * @return El último Token devuelto
      */
     public Token getLookahead() throws Exception {
-        if (this.previous != null) {
+        if (current == null) {
             throw new Exception("No se puede obtener el actual tras revertir.");
         }
         
@@ -40,26 +40,21 @@ public class Tokenizer implements Enumeration {
     
     @Override
     public boolean hasMoreElements() {
-        return previous != null || !cola.isEmpty() || scanner.hasNext();
+        return !cola.isEmpty() || scanner.hasNext();
     }
 
     @Override
     public Token nextElement() throws NoSuchElementException {
         String match;
         
-        if (previous != null) {
-            current = previous;
-            previous = null;
-            
-            return current;
-        }
-        
         /**
          * Si ya había un token analizado anteriormente lo devolvemos y
          * eliminamos de la cola
          */
         if (!cola.isEmpty()) {
-            return cola.remove();
+            System.out.print("*");
+            current = cola.remove();
+            return current;
         }
         
         while (true) {
@@ -187,7 +182,7 @@ public class Tokenizer implements Enumeration {
             throw new RuntimeException("No se puede revertir si no hay un elemento todavía.");
         }
         
-        previous = current;
+        cola.addFirst(current);
         current = null;
     }
 }
