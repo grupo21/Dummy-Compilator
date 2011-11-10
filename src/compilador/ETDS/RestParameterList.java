@@ -4,22 +4,22 @@
  */
 package compilador.ETDS;
 
-import compilador.*;
+import compilador.CompilerContext;
+import compilador.CompilerException;
 
 /**
  *
  * @author gmaiztegi
  */
-public class SubprogramDeclarations extends AbstractETDS {
-    
-    public SubprogramDeclarations(CompilerContext context) {
+class RestParameterList extends AbstractETDS {
+
+    public RestParameterList(CompilerContext context) {
         super(context);
     }
 
     @Override
     public void execute() throws CompilerException {
-        new SubprogramDeclaration(context).execute();
-        new SubprogramDeclarations(context).execute();
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

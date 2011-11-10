@@ -10,7 +10,7 @@ import compilator.Symbol.Symbol;
  *
  * @author gmaiztegi
  */
-public class ArgumentDeclarationInstruction extends DeclarationInstruction {
+public class ParameterDeclarationInstruction extends DeclarationInstruction {
     
     protected boolean reference;
     
@@ -18,7 +18,7 @@ public class ArgumentDeclarationInstruction extends DeclarationInstruction {
         return reference ? "ref" : "val";
     }
     
-    public ArgumentDeclarationInstruction(Symbol symbol, boolean reference) {
+    public ParameterDeclarationInstruction(Symbol symbol, boolean reference) {
         super(symbol);
         
         this.reference = reference;

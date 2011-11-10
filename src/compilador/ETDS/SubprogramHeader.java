@@ -5,6 +5,9 @@
 package compilador.ETDS;
 
 import compilador.*;
+import compilador.Token.*;
+import compiladorIntermediate.*;
+import compilator.Symbol.Symbol;
 
 /**
  *
@@ -20,7 +23,23 @@ public class SubprogramHeader extends AbstractETDS {
 
     @Override
     public void execute() throws CompilerException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Token idtoken;
+        Symbol id;
+        
+        try {
+            expectString("procedure");
+        } catch (SyntaxException ex) {
+            revert();
+            return;
+        }
+        
+        idtoken = expectType(TokenType.IDENTIFIER);
+        id = addSymbol(idtoken.getMatch(), Symbol.PROCEDURE);
+        addInstruction(new ProcInstruction(id));
+        
+        new Arguments(context).execute();
+        
+        expectString("is");
     }
     
 }
