@@ -23,7 +23,7 @@ public abstract class AbstractETDS implements ETDS {
         this.context = context;
     }
     
-    public Token expectType(int type) throws SyntaxException {
+    protected Token expectType(int type) throws SyntaxException {
         Token token;
         
         if (!context.tokenizer.hasMoreElements()) {
@@ -39,7 +39,7 @@ public abstract class AbstractETDS implements ETDS {
         return token;
     }
     
-    public Token expectString(String str) throws SyntaxException {
+    protected Token expectString(String str) throws SyntaxException {
         Token token;
         
         
@@ -56,21 +56,25 @@ public abstract class AbstractETDS implements ETDS {
         return token;
     }
     
-    public void revert() {
+    protected void revert() {
         context.tokenizer.revert();
     }
     
-    public Symbol addSymbol(String name, int type) throws RedefinedSymbolException {
+    protected Symbol addSymbol(String name, int type) throws RedefinedSymbolException {
         Symbol symbol = new Symbol(name, type);
         context.symbolTable.add(symbol);
         return symbol;
     }
     
-    public Marker addInstruction(Instruction instruction) {
+    protected Symbol getSymbol(String name) throws UndeclaredSymbolException {
+        return context.symbolTable.get(name);
+    }
+    
+    protected Marker addInstruction(Instruction instruction) {
         return context.instructionList.add(instruction);
     }
     
-    public Marker getMarker() {
+    protected Marker getMarker() {
         return context.instructionList.getCurrentMarker();
     }
 }
