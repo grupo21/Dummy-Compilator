@@ -52,7 +52,6 @@ public class Tokenizer implements Enumeration {
          * eliminamos de la cola
          */
         if (!cola.isEmpty()) {
-            System.out.print("*");
             current = cola.remove();
             return current;
         }
