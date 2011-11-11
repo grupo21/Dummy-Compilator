@@ -11,29 +11,21 @@ import compilador.CompilerException;
  *
  * @author gmaiztegi
  */
-class ClassPair extends AbstractETDS {
+class RestClassPair extends AbstractETDS {
     
     public boolean reference;
 
-    public ClassPair(CompilerContext context) {
+    public RestClassPair(CompilerContext context) {
         super(context);
     }
 
     @Override
     public void execute() throws CompilerException {
-        RestClassPair rest;
         try {
-            expectString("in");
-            
-        } catch (SyntaxException ex) {
             expectString("out");
             reference = true;
-            return;
+        } catch (SyntaxException ex) {
+            reference = false;
         }
-        
-        rest = new RestClassPair(context);
-        rest.execute();
-        
-        reference = rest.reference;
     }
 }
