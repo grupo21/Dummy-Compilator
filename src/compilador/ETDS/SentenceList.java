@@ -18,6 +18,11 @@ public class SentenceList extends AbstractETDS {
 
     @Override
     public void execute() throws CompilerException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            new Sentence(context).execute();
+        } catch (CompilerException ex) {
+            revert();
+            return;
+        }
     }
 }

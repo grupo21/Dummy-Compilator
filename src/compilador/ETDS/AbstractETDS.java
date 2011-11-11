@@ -8,6 +8,8 @@ import compilador.Token.*;
 import compilador.*;
 import compiladorIntermediate.*;
 import compilator.Symbol.*;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Token representando un flotante
@@ -76,5 +78,23 @@ public abstract class AbstractETDS implements ETDS {
     
     protected Marker getMarker() {
         return context.instructionList.getCurrentMarker();
+    }
+    
+    protected void completeGoto(Marker from, Marker to) {
+        CompletableInstruction inst;
+        
+        inst = (CompletableInstruction)context.instructionList.get(from);
+        
+        inst.complete(to);
+    }
+    
+    protected void completeGotos(List<Marker> list, Marker where) {
+        Iterator<Marker> iter;
+        
+        iter = list.iterator();
+        
+        while (iter.hasNext()) {
+            completeGoto(iter.next(), where);
+        }
     }
 }
