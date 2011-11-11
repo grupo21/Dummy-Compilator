@@ -26,6 +26,7 @@ class ClassPair extends AbstractETDS {
             expectString("in");
             
         } catch (SyntaxException ex) {
+            revert();
             expectString("out");
             reference = true;
             return;

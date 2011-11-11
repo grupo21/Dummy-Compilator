@@ -25,6 +25,7 @@ class RestClassPair extends AbstractETDS {
             expectString("out");
             reference = true;
         } catch (SyntaxException ex) {
+            revert();
             reference = false;
         }
     }
