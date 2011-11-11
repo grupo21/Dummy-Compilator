@@ -6,6 +6,9 @@ package compilador.ETDS;
 
 import compilador.CompilerContext;
 import compilador.CompilerException;
+import compiladorIntermediate.*;
+import compilator.Symbol.*;
+import java.util.Iterator;
 
 /**
  *
@@ -19,7 +22,36 @@ class RestParameterList extends AbstractETDS {
 
     @Override
     public void execute() throws CompilerException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        IdentifierList idlist;
+        ClassPair classpair;
+        Type type;
+        Iterator<String> iter;
+        
+        try {
+            expectString(";");
+        } catch (SyntaxException ex) {
+            revert();
+            return;
+        }
+        
+        
+        idlist = new IdentifierList(context);
+        idlist.execute();
+        
+        expectString(":");
+        
+        classpair = new ClassPair(context);
+        classpair.execute();
+        
+        type = new Type(context);
+        type.execute();
+        
+        iter = idlist.nameList.iterator();
+        while (iter.hasNext()) {
+            Symbol var = addSymbol(iter.next(), type.type);
+            addInstruction(new ParameterDeclarationInstruction(var, classpair.reference));
+        }
     }
     
 }
