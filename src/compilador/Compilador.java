@@ -17,7 +17,7 @@ public class Compilador {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws CompilerException {
+    public static void main(String[] args) throws CompilerException, IOException {
         
         Reader input = null;
         Writer output;
@@ -37,12 +37,14 @@ public class Compilador {
         output = new BufferedWriter(new OutputStreamWriter(System.out));
 
         context = new CompilerContext(input, output);
-        context.compile();
+        
         try {
+            context.compile();
+        } catch (UnsupportedOperationException ex) {
             context.print();
-        } catch (IOException ex) {
-            System.err.println("Error al escribir el programa intermedio: "+ex.getLocalizedMessage());
-            System.exit(1);
+            throw ex;
         }
+        
+        context.print();
     }
 }
