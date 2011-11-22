@@ -6,6 +6,7 @@ package compilator.ETDS;
 
 import compilator.*;
 import compilator.Intermediate.*;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -22,7 +23,23 @@ class BooleanExpression extends AbstractETDS {
 
     @Override
     public void execute() throws CompilerException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        SimpleExpression expr;
+        RestBooleanExpression rest;
+        
+        expr = new SimpleExpression(context);
+        expr.execute();
+        
+        truelist = new LinkedList<Marker>();
+        truelist.add(getMarker());
+        
+        falselist = new LinkedList<Marker>();
+        falselist.add(getMarker().add(1));
+        
+        rest = new RestBooleanExpression(context);
+        rest.hsymbol = expr.result;
+        rest.execute();
+        
+        addInstruction(new GotoInstruction());
     }
     
 }

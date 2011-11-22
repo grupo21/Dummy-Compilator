@@ -22,6 +22,11 @@ public class Marker {
         return index;
     }
     
+    public Marker add(int i) {
+        index += i;
+        return this;
+    }
+    
     public InstructionList getList() {
         return list;
     }
