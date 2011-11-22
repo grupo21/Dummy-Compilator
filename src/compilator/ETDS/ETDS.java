@@ -2,14 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package compilator.Symbol;
+package compilator.ETDS;
 
-import compilator.SemanticException;
+import compilator.CompilerException;
 
 /**
  *
  * @author gmaiztegi
  */
-public class RedefinedSymbolException extends SemanticException {
+public interface ETDS {
     
+    public void execute() throws CompilerException;
 }

@@ -2,14 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package compilator.Symbol;
-
-import compilator.SemanticException;
+package compilator.Intermediate;
 
 /**
  *
  * @author gmaiztegi
  */
-public class RedefinedSymbolException extends SemanticException {
+public interface Instruction {
     
+    public String getText();    
+    public boolean isComplete();
 }

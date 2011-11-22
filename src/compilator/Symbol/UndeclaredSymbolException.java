@@ -4,7 +4,7 @@
  */
 package compilator.Symbol;
 
-import compilador.SemanticException;
+import compilator.SemanticException;
 
 /**
  *
