@@ -24,7 +24,6 @@ class Sentence extends AbstractETDS {
         
         try {
             var.execute();
-            System.err.println("Nooooo");
         } catch (SyntaxException e) {
             revert();
             
@@ -107,7 +106,6 @@ class Sentence extends AbstractETDS {
         addInstruction(new AsignationInstruction(var.var, expr.result));
         
         expectString(";");
-        System.err.println("Pasa");
     }
     
 }
