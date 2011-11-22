@@ -5,6 +5,7 @@
 package compilator.ETDS;
 
 import compilator.*;
+import compilator.Intermediate.EndProcInstruction;
 
 /**
  *
@@ -36,6 +37,8 @@ public class SubprogramDeclaration extends AbstractETDS {
         optid.execute();
         
         expectString(";");
+        
+        addInstruction(new EndProcInstruction());
         
         // Comprobar que los ids del principio y final son iguales.
     }

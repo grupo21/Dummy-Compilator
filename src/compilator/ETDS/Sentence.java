@@ -57,8 +57,18 @@ class Sentence extends AbstractETDS {
                                 return;
                             }
                             
-                            throw new UnsupportedOperationException();
-                            //return;
+                            
+                            expectString("(");
+                            
+                            var.execute();
+                            
+                            expectString(")");
+                            
+                            expectString(";");
+                            
+                            addInstruction(new ReadInstruction(var.var));
+                            
+                            return;
                         }
                         
                         throw new UnsupportedOperationException();

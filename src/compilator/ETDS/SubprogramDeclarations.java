@@ -18,7 +18,13 @@ public class SubprogramDeclarations extends AbstractETDS {
 
     @Override
     public void execute() throws CompilerException {
-        new SubprogramDeclaration(context).execute();
+        try {
+            new SubprogramDeclaration(context).execute();
+        } catch (SyntaxException ex) {
+            revert();
+            return;
+        }
+        
         new SubprogramDeclarations(context).execute();
     }
     
