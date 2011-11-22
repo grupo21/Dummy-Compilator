@@ -33,6 +33,4 @@ public class OptionalIdentifier extends AbstractETDS {
             return;
         }
     }
-    
-    
 }

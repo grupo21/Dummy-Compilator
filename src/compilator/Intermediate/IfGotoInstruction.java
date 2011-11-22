@@ -31,6 +31,6 @@ public class IfGotoInstruction extends GotoInstruction {
     
     @Override
     public String getText() {
-        return "if "+x.getName()+" "+operation+" "+y.toString()+" "+super.getText();
+        return "if "+x.getName()+" "+operation+" "+y.getName()+" "+super.getText();
     }
 }

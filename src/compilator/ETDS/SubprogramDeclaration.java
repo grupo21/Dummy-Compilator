@@ -33,6 +33,7 @@ public class SubprogramDeclaration extends AbstractETDS {
         expectString("endprocedure");
         
         optid = new OptionalIdentifier(context);
+        optid.execute();
         
         expectString(";");
         
