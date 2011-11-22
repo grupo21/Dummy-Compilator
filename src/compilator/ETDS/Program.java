@@ -6,6 +6,7 @@ package compilator.ETDS;
 
 import compilator.Token.*;
 import compilator.*;
+import compilator.Intermediate.HaltInstruction;
 import compilator.Intermediate.ProgInstruction;
 import compilator.Symbol.Symbol;
 
@@ -44,6 +45,8 @@ public class Program extends AbstractETDS {
         new SentenceList(context).execute();
         
         expectString("endprogram");
+        OptionalIdentifier optid = new OptionalIdentifier(context);
+        optid.execute();
         expectString(";");
     }
 }

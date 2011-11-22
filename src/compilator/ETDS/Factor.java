@@ -44,6 +44,8 @@ class Factor extends AbstractETDS {
                     SimpleExpression expr = new SimpleExpression(context);
                     expr.execute();
                     
+                    expectString(")");
+                    
                     result = expr.result;
                     
                     return;

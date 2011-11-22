@@ -16,7 +16,7 @@ program ejemplo is
         get(b);
         d:= 1/b;
         e:= 1/a;
-        sumar(a,b,c);
+{*	sumar(a,b,c); *}
         c:= c*(c*d)+e;
-        put_line(c*c);
+		put_line(c*c);
 endprogram;

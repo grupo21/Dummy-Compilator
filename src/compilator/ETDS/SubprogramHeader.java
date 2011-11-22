@@ -26,12 +26,7 @@ public class SubprogramHeader extends AbstractETDS {
         Token idtoken;
         Symbol id;
         
-        try {
-            expectString("procedure");
-        } catch (SyntaxException ex) {
-            revert();
-            return;
-        }
+        expectString("procedure");
         
         idtoken = expectType(TokenType.IDENTIFIER);
         id = addSymbol(idtoken.getMatch(), Symbol.PROCEDURE);

@@ -40,7 +40,7 @@ public class Compilador {
         
         try {
             context.compile();
-        } catch (UnsupportedOperationException ex) {
+        } catch (CompilerException ex) {
             context.print();
             throw ex;
         }

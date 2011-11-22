@@ -52,18 +52,22 @@ class Sentence extends AbstractETDS {
                             } catch (SyntaxException eeeeee) {
                                 revert();
                                 
-                                expectString("put_line");
+                                SimpleExpression expr = new SimpleExpression(context);
                                 
-                                return;
+                                expectString("put_line");
+                                expectString("(");
+                                expr.execute();
+                                expectString(")");
+                                expectString(";");
+                                
+                                addInstruction(new WriteInstruction(expr.result));
+                                addInstruction(new WritelnInstruction());
                             }
                             
                             
                             expectString("(");
-                            
                             var.execute();
-                            
                             expectString(")");
-                            
                             expectString(";");
                             
                             addInstruction(new ReadInstruction(var.var));
