@@ -21,7 +21,18 @@ class Term extends AbstractETDS {
 
     @Override
     public void execute() throws CompilerException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        RestTerm rest;
+        Factor factor;
+        
+        factor = new Factor(context);
+        factor.execute();
+        
+        rest = new RestTerm(context);
+        rest.hsymbol = factor.result;
+        
+        rest.execute();
+        
+        result = rest.result;
     }
     
 }

@@ -24,6 +24,7 @@ class Sentence extends AbstractETDS {
         
         try {
             var.execute();
+            System.err.println("Nooooo");
         } catch (SyntaxException e) {
             revert();
             
@@ -57,10 +58,13 @@ class Sentence extends AbstractETDS {
                                 return;
                             }
                             
-                            return;
+                            throw new UnsupportedOperationException();
+                            //return;
                         }
                         
-                        return;
+                        throw new UnsupportedOperationException();
+                        
+                        //return;
                     }
                     
                     Marker m1, m2;
@@ -81,19 +85,29 @@ class Sentence extends AbstractETDS {
                     completeGotos(expr.falselist, m1);
                     
                     expectString("endrepeat");
+                    expectString(";");
                     
                     return;
                 }
                 
-                return;
+                throw new UnsupportedOperationException();
+                //return;
             }
             
             
-            return;
+            //return;
+            
+            throw new UnsupportedOperationException();
         }
         
+        expectString(":=");
+        
         SimpleExpression expr = new SimpleExpression(context);
+        expr.execute();
         addInstruction(new AsignationInstruction(var.var, expr.result));
+        
+        expectString(";");
+        System.err.println("Pasa");
     }
     
 }

@@ -24,5 +24,7 @@ public class SentenceList extends AbstractETDS {
             revert();
             return;
         }
+        
+        new SentenceList(context).execute();
     }
 }

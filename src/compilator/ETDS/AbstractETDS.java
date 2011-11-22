@@ -34,6 +34,8 @@ public abstract class AbstractETDS implements ETDS {
         
         token = context.tokenizer.nextElement();
         
+        System.out.println(token.getMatch());
+        
         if (!token.isType(type)) {
             throw new SyntaxException("Se esperaba token del tipo "+TokenType.toString(type)+" pero se ha encontrado "+TokenType.toString(token.getType()));
         }
@@ -50,6 +52,8 @@ public abstract class AbstractETDS implements ETDS {
         }
         
         token = context.tokenizer.nextElement();
+        
+        System.out.println(token.getMatch());
         
         if (!token.getMatch().equals(str)) {
             throw new SyntaxException("Se esperaba \""+str+"\", se ha obtenido \""+token.getMatch()+"\".");

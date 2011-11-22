@@ -38,5 +38,12 @@ public class Program extends AbstractETDS {
         
         new Declarations(context).execute();
         new SubprogramDeclarations(context).execute();
+        
+        expectString("begin");
+        
+        new SentenceList(context).execute();
+        
+        expectString("endprogram");
+        expectString(";");
     }
 }

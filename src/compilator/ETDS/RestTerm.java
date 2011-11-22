@@ -4,8 +4,7 @@
  */
 package compilator.ETDS;
 
-import compilator.CompilerContext;
-import compilator.CompilerException;
+import compilator.*;
 import compilator.Intermediate.OperationInstruction;
 import compilator.Symbol.Symbol;
 
@@ -13,30 +12,28 @@ import compilator.Symbol.Symbol;
  *
  * @author gmaiztegi
  */
-class RestSimpleExpression extends AbstractETDS {
+class RestTerm extends AbstractETDS {
     
     public Symbol hsymbol;
     public Symbol result;
     
-    public RestSimpleExpression(CompilerContext context) {
+    public RestTerm(CompilerContext context) {
         super(context);
     }
 
     @Override
     public void execute() throws CompilerException {
-        
-        Term term;
-        String operation = null;
+        Factor factor;
+        String operation;
         
         try {
-            expectString("+");
-            operation = "+";
+            expectString("*");
+            operation = "*";
         } catch (SyntaxException e) {
             revert();
-            
             try {
-                expectString("-");
-                operation = "-";
+                expectString("/");
+                operation = "/";
             } catch (SyntaxException ex) {
                 revert();
                 result = hsymbol;
@@ -44,12 +41,12 @@ class RestSimpleExpression extends AbstractETDS {
             }
         }
         
-        term = new Term(context);
-        term.execute();
+        factor = new Factor(context);
+        factor.execute();
         
         result = getNewSymbol(hsymbol.getType());
         
-        addInstruction(new OperationInstruction(result, hsymbol, term.result, operation));
+        addInstruction(new OperationInstruction(result, hsymbol, factor.result, operation));
     }
     
 }
