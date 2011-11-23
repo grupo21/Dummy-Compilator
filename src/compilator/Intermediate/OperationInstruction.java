@@ -4,7 +4,7 @@
  */
 package compilator.Intermediate;
 
-import compilator.Symbol.Symbol;
+import compilator.Symbol.*;
 
 /**
  *
@@ -15,12 +15,11 @@ public class OperationInstruction extends AsignationInstruction {
     protected String idin2;
     protected String operator;
     
-    public OperationInstruction(Symbol out, Symbol in, Symbol in2, String operator) {
+    public OperationInstruction(Symbol out, Symbol in, Symbol in2, String operator) throws IncompatibleTypesException {
         super(out, in);
         
-        if (!in2.isType(Symbol.INTEGER) && !in2.isType(Symbol.FLOAT)) {
-            throw new IllegalArgumentException();
-        }
+        TypeSemantics.checkScalar(in2);
+        TypeSemantics.checkEqual(in, in2);
         
         idin2 = in2.getName();
         this.operator = operator;

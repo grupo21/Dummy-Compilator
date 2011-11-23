@@ -4,7 +4,7 @@
  */
 package compilator.Intermediate;
 
-import compilator.Symbol.Symbol;
+import compilator.Symbol.*;
 
 /**
  *
@@ -14,11 +14,8 @@ public class ReadInstruction implements Instruction {
     
     protected Symbol var;
     
-    public ReadInstruction(Symbol var) {
-        if (!var.isType(Symbol.INTEGER) && !var.isType(Symbol.FLOAT)) {
-            throw new IllegalArgumentException();
-        }
-        
+    public ReadInstruction(Symbol var) throws IncompatibleTypesException {
+        TypeSemantics.checkScalar(var);
         this.var = var;
     }
     

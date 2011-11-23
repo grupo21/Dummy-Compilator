@@ -4,7 +4,7 @@
  */
 package compilator.Intermediate;
 
-import compilator.Symbol.Symbol;
+import compilator.Symbol.*;
 
 /**
  *
@@ -14,11 +14,12 @@ public class AsignationInstruction implements Instruction {
     
     protected String idout, idin;
 
-    public AsignationInstruction(Symbol out, Symbol in) {
-        if (!out.isType(Symbol.INTEGER) && !out.isType(Symbol.FLOAT)
-                || !in.isType(Symbol.INTEGER) && !in.isType(Symbol.FLOAT)) {
-            throw new IllegalArgumentException();
-        }
+    public AsignationInstruction(Symbol out, Symbol in) throws IncompatibleTypesException {
+        
+        TypeSemantics.checkScalar(out);
+        TypeSemantics.checkScalar(in);
+        TypeSemantics.checkEqual(in, out);
+        
         this.idout = out.getName();
         this.idin = in.getName();
     }

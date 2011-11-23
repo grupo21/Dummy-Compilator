@@ -2,12 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package compilator.Intermediate;
+package compilator.Symbol;
+
+import compilator.SemanticException;
 
 /**
  *
  * @author gmaiztegi
  */
-public abstract class AbstractInstruction implements Instruction {
+public class IncompatibleTypesException extends SemanticException {
     
 }

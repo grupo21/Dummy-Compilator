@@ -4,7 +4,7 @@
  */
 package compilator.Intermediate;
 
-import compilator.Symbol.Symbol;
+import compilator.Symbol.*;
 
 /**
  *
@@ -14,11 +14,8 @@ public class WriteInstruction implements Instruction {
 
     protected Symbol var;
     
-    public WriteInstruction(Symbol var) {
-        if (!var.isType(Symbol.INTEGER) && !var.isType(Symbol.FLOAT)) {
-            throw new IllegalArgumentException();
-        }
-        
+    public WriteInstruction(Symbol var) throws IncompatibleTypesException {
+        TypeSemantics.checkScalar(var);
         this.var = var;
     }
     

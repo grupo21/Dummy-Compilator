@@ -4,7 +4,7 @@
  */
 package compilator.Intermediate;
 
-import compilator.Symbol.Symbol;
+import compilator.Symbol.*;
 
 /**
  *
@@ -14,10 +14,9 @@ public class ProcInstruction implements Instruction {
     
     protected String name;
     
-    public ProcInstruction(Symbol symbol) {
-        if (!symbol.isType(Symbol.PROCEDURE)) {
-            throw new IllegalArgumentException();
-        }
+    public ProcInstruction(Symbol symbol) throws IncompatibleTypesException {
+        TypeSemantics.checkType(symbol, Symbol.PROCEDURE);
+        
         this.name = symbol.getName();
     }
 
