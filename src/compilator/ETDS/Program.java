@@ -48,5 +48,7 @@ public class Program extends AbstractETDS {
         OptionalIdentifier optid = new OptionalIdentifier(context);
         optid.execute();
         expectString(";");
+        
+        addInstruction(new HaltInstruction());
     }
 }
