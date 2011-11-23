@@ -42,7 +42,7 @@ public class SyntaxException extends CompilerException {
         msg = "Se ha obtenido \""+got+"\", se esperaba: ";
         
         for (String exp : expected) {
-            msg += exp+", ";
+            msg += exp+" ";
         }
         
         return msg;
