@@ -143,8 +143,26 @@ class Sentence extends AbstractETDS {
                     return;
                 }
                 
-                throw new UnsupportedOperationException();
-                //return;
+                Marker m1, m2, m3, n;
+                BooleanExpression expr = new BooleanExpression(context);
+                
+                m1 = getMarker();
+                expr.execute();
+                expectString("do");
+                m2 = getMarker();
+                new SentenceList(context).execute();
+                
+                n = addInstruction(new GotoInstruction(m1));
+                
+                expectString("endwhile");
+                expectString(";");
+                
+                m3 = getMarker();
+                
+                completeGotos(expr.truelist, m2);
+                completeGotos(expr.falselist, m3);
+                
+                return;
             }
             
             Marker m1, m2, m3, n;

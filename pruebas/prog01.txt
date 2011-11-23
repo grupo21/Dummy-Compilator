@@ -10,6 +10,8 @@ program ejemplo is
             aux := aux - 1 ;
             c := c+1;
         until aux > 0 endrepeat ;
+        while 3 < 4 do
+        endwhile;
     endprocedure sumar;
     begin
         for a ascending from 3+5 to 5*(2+3) do

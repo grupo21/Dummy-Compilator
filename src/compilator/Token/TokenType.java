@@ -25,7 +25,7 @@ public class TokenType {
         "var", "begin","endprogram", "program", "integer", "float", "procedure",
         "endprocedure", "is", "in", "out", "then", "if", "else", "endif",
         "repeat", "until", "endrepeat", "to", "for", "ascending", "descending",
-        "from", "do", "endfor", "get", "put_line"
+        "from", "do", "endfor", "get", "put_line", "while", "endwhile"
     };
     
     public static final Set<String> RESERVEDSET = new HashSet<String>(Arrays.asList(RESERVEDWORDS));
