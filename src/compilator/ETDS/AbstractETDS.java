@@ -29,13 +29,21 @@ public abstract class AbstractETDS implements ETDS {
         Token token;
         
         if (!context.tokenizer.hasMoreElements()) {
-            throw new SyntaxException("Se esperaba token del tipo "+TokenType.toString(type)+" pero el archivo se ha acabado.");
+            throw new SyntaxException(null, TokenType.toString(type));
         }
+        
+        if (!context.reverted) {
+            context.expectedList.clear();
+        }
+        
+        context.reverted = false;
+        
+        context.expectedList.add(TokenType.toString(type));
         
         token = context.tokenizer.nextElement();
         
         if (!token.isType(type)) {
-            throw new SyntaxException("Se esperaba token del tipo "+TokenType.toString(type)+" pero se ha encontrado "+TokenType.toString(token.getType()));
+            throw new SyntaxException(token.getMatch(), context.expectedList);
         }
         
         return token;
@@ -46,19 +54,29 @@ public abstract class AbstractETDS implements ETDS {
         
         
         if (!context.tokenizer.hasMoreElements()) {
-            throw new SyntaxException("Se esperaba \""+str+"\", se ha obtenido fin de archivo.");
+            throw new SyntaxException(null, str);
         }
+        
+        if (!context.reverted) {
+            context.expectedList.clear();
+        }
+        
+        context.reverted = false;
+        
+        context.expectedList.add(str);
         
         token = context.tokenizer.nextElement();
         
+        
         if (!token.getMatch().equals(str)) {
-            throw new SyntaxException("Se esperaba \""+str+"\", se ha obtenido \""+token.getMatch()+"\".");
+            throw new SyntaxException(token.getMatch(), context.expectedList);
         }
         
         return token;
     }
     
     protected void revert() {
+        context.reverted = true;
         context.tokenizer.revert();
     }
     

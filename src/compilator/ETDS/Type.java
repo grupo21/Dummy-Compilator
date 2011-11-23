@@ -22,17 +22,13 @@ public class Type extends AbstractETDS {
 
     @Override
     public void execute() throws CompilerException {
-        Token typetoken;
-        
-        typetoken = expectType(TokenType.RESERVED);
-        
-        if (typetoken.getMatch().equals("integer")) {
+        try {
+            expectString("integer");
             type = Symbol.INTEGER;
-        }
-        else if (typetoken.getMatch().equals("float")) {
+        } catch (SyntaxException ex) {
+            revert();
+            expectString("float");
             type = Symbol.FLOAT;
-        } else {
-            throw new SyntaxException("Se esperaba \"integer\" o \"float\", pero se ha obtenido "+typetoken.getMatch());
         }
     }
 }

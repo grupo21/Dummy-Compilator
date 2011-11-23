@@ -11,6 +11,8 @@ import compilator.Intermediate.Instruction;
 import compilator.Symbol.SymbolTable;
 import java.io.*;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -22,12 +24,17 @@ public class CompilerContext {
     public InstructionList instructionList;
     public SymbolTable symbolTable;
     
+    public List<String> expectedList;
+    public boolean reverted;
+    
     protected PrintWriter output;
     
     public CompilerContext(Reader input, Writer output) {
         this.tokenizer = new Tokenizer(input);
         this.symbolTable = new SymbolTable();
         this.instructionList = new InstructionList();
+        this.expectedList = new LinkedList<String>();
+        this.reverted = false;
         this.output = new PrintWriter(output, true);
     }
     
