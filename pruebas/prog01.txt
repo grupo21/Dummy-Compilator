@@ -12,11 +12,14 @@ program ejemplo is
         until aux > 0 endrepeat ;
     endprocedure sumar;
     begin
+        for a ascending from 3+5 to 5*(2+3) do
+            put_line(a);
+        endfor;
         get(a);
         get(b);
         d:= 1/b;
         e:= 1/a;
 {*	sumar(a,b,c); *}
         c:= c*(c*d)+e;
-		put_line(c*c);
+        put_line(c*c);
 endprogram;

@@ -6,6 +6,7 @@ package compilator.ETDS;
 
 import compilator.*;
 import compilator.Intermediate.*;
+import compilator.Symbol.Symbol;
 
 /**
  *
@@ -75,9 +76,48 @@ class Sentence extends AbstractETDS {
                             return;
                         }
                         
-                        throw new UnsupportedOperationException();
+                        ForMode mode;
+                        SimpleExpression ex1, ex2;
+                        Marker m1, m2;
                         
-                        //return;
+                        mode = new ForMode(context);
+                        ex1 = new SimpleExpression(context);
+                        ex2 = new SimpleExpression(context);
+                        
+                        var.execute();
+                        mode.execute();
+                        expectString("from");
+                        ex1.execute();
+                        expectString("to");
+                        ex2.execute();
+                        expectString("do");
+                        
+                        addInstruction(new AsignationInstruction(var.var, ex1.result));
+                        
+                        if (mode.ascending) {
+                            m1 = addInstruction(new IfGotoInstruction(var.var, ex2.result, ">"));
+                        } else {
+                            m1 = addInstruction(new IfGotoInstruction(var.var, ex2.result, "<"));
+                        }
+                        
+                        new SentenceList(context).execute();
+                        
+                        expectString("endfor");
+                        expectString(";");
+                        
+                        m2 = getMarker();
+                        
+                        if (mode.ascending) {
+                            addInstruction(new OperationInstruction(var.var, var.var, new Symbol("1", Symbol.INTEGER), "+"));
+                        } else {
+                            addInstruction(new OperationInstruction(var.var, var.var, new Symbol("1", Symbol.INTEGER), "-"));
+                        }
+                        
+                        addInstruction(new GotoInstruction(m1));
+                        
+                        completeGoto(m1, m2.add(2));
+                        
+                        return;
                     }
                     
                     Marker m1, m2;

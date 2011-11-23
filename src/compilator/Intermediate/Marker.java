@@ -23,8 +23,7 @@ public class Marker {
     }
     
     public Marker add(int i) {
-        index += i;
-        return this;
+        return new Marker(list, index+i);
     }
     
     public InstructionList getList() {
