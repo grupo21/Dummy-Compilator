@@ -20,7 +20,7 @@ public class SentenceList extends AbstractETDS {
     public void execute() throws CompilerException {
         try {
             new Sentence(context).execute();
-        } catch (CompilerException ex) {
+        } catch (SyntaxException ex) {
             revert();
             return;
         }

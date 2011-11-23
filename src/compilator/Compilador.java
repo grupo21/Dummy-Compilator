@@ -17,7 +17,7 @@ public class Compilador {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws CompilerException, IOException {
+    public static void main(String[] args) throws Exception, CompilerException, IOException {
         
         Reader input = null;
         Writer output;
@@ -40,7 +40,7 @@ public class Compilador {
         
         try {
             context.compile();
-        } catch (CompilerException ex) {
+        } catch (Exception ex) {
             context.print();
             throw ex;
         }

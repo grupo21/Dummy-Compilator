@@ -31,6 +31,8 @@ public class SubprogramDeclaration extends AbstractETDS {
         
         new SentenceList(context).execute();
         
+        popContext();
+        
         expectString("endprocedure");
         
         optid = new OptionalIdentifier(context);

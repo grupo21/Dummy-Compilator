@@ -52,5 +52,11 @@ public class CompilerContext {
             output.println(counter+"\t"+instr);
             counter++;
         }
+        
+        output.println("Simbolos:");
+        
+        for (String symbol : symbolTable) {
+            output.println(symbol);
+        }
     }
 }

@@ -101,4 +101,12 @@ public abstract class AbstractETDS implements ETDS {
             completeGoto(iter.next(), where);
         }
     }
+    
+    protected void pushContext() {
+        context.symbolTable.pushContext();
+    }
+    
+    protected void popContext() {
+        context.symbolTable.popContext();
+    }
 }

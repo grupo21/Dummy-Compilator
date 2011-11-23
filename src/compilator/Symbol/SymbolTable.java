@@ -4,42 +4,58 @@
  */
 package compilator.Symbol;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
  *
  * @author gmaiztegi
  */
-public class SymbolTable {
+public class SymbolTable implements Iterable<String> {
     
     protected Map<String, Symbol> table;
-    protected int tempCounter;
+    protected Deque<String> context;
+    protected int tempCounter, contextCounter;
     
     public SymbolTable() {
         this.table = new HashMap<String, Symbol>();
+        context = new ArrayDeque<String>();
+        context.push("");
         tempCounter = 0;
+        contextCounter = 0;
     }
     
     public void add(Symbol symbol) throws RedefinedSymbolException {
         
-        if (table.containsKey(symbol.getName())) {
+        String fullname = getContext()+symbol.getName();
+        
+        if (table.containsKey(fullname)) {
             throw new RedefinedSymbolException();
         }
         
-        table.put(symbol.getName(), symbol);
+        table.put(fullname, symbol);
     }
     
     public Symbol get(String name) throws UndeclaredSymbolException {
         Symbol symbol;
+        Iterator<String> iter;
         
-        symbol = table.get(name);
+        iter = context.descendingIterator();
         
-        if (symbol == null) {
-            throw new UndeclaredSymbolException();
+        while (iter.hasNext()) {
+            String fullname;
+            fullname = iter.next()+name;
+            symbol = table.get(fullname);
+            
+            if (symbol != null) {
+                return symbol;
+            }
         }
         
-        return symbol;
+        throw new UndeclaredSymbolException();
     }
     
     public boolean exists(String name) {
@@ -68,5 +84,28 @@ public class SymbolTable {
         }
         
         return temp;
+    }
+    
+    public void pushContext() {
+        String last, current;
+        
+        last = context.peek();
+        
+        current = last+(contextCounter++)+"__";
+        
+        context.push(current);
+    }
+    
+    public void popContext() {
+        context.pop();
+    }
+    
+    protected String getContext() {
+        return context.peek();
+    }
+
+    @Override
+    public Iterator<String> iterator() {
+        return table.keySet().iterator();
     }
 }

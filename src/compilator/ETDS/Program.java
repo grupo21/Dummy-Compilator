@@ -37,6 +37,8 @@ public class Program extends AbstractETDS {
         
         addInstruction(new ProgInstruction(program));
         
+        pushContext();
+        
         new Declarations(context).execute();
         new SubprogramDeclarations(context).execute();
         
@@ -45,6 +47,9 @@ public class Program extends AbstractETDS {
         new SentenceList(context).execute();
         
         expectString("endprogram");
+        
+        popContext();
+        
         OptionalIdentifier optid = new OptionalIdentifier(context);
         optid.execute();
         expectString(";");
