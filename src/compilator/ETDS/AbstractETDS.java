@@ -75,6 +75,12 @@ public abstract class AbstractETDS implements ETDS {
         return token;
     }
     
+    protected void expectEnd() throws SyntaxException {
+        if (context.tokenizer.hasMoreElements()) {
+            throw new SyntaxException(context.tokenizer.nextElement().getMatch(), "'fin de fichero'");
+        }
+    }
+    
     protected void revert() {
         context.reverted = true;
         context.tokenizer.revert();

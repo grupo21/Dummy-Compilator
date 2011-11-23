@@ -55,5 +55,7 @@ public class Program extends AbstractETDS {
         expectString(";");
         
         addInstruction(new HaltInstruction());
+        
+        expectEnd();
     }
 }
