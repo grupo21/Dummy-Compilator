@@ -19,9 +19,9 @@ program ejemplo is
         endfor;
         get(a);
         get(b);
-        d:= 1/b;
-        e:= 1/a;
+        b:= 1/b;
+        a:= 1/a;
 {*	sumar(a,b,c); *}
-        c:= c*(c*d)+e;
+        d:= d*(e*d)+e;
         put_line(c*c);
 endprogram;
