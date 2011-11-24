@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package compilator;
 
 import java.io.*;
@@ -17,34 +13,49 @@ public class Compilador {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws Exception, CompilerException, IOException {
-        
+    public static void main(String[] args) {
+
         Reader input = null;
         Writer output;
         CompilerContext context;
         
+        try {
+            System.setErr(new PrintStream(System.err, true, "UTF-8"));
+            System.setOut(new PrintStream(System.out, true, "UTF-8"));
+        } catch (UnsupportedEncodingException ex) {
+            System.err.println("No se ha podido cambiar la codificacion: "
+                    + ex.getLocalizedMessage());
+        }
+        
+
         if (args.length > 0) {
             try {
                 input = new BufferedReader(new FileReader(args[0]));
             } catch (FileNotFoundException ex) {
-                System.err.println("Error al abrir la entrada: "+ex.getLocalizedMessage());
+                System.err.println("Error al abrir la entrada: " + ex.getLocalizedMessage());
                 System.exit(1);
             }
         } else {
             input = new BufferedReader(new InputStreamReader(System.in));
         }
-        
+
         output = new BufferedWriter(new OutputStreamWriter(System.out));
 
         context = new CompilerContext(input, output);
-        
+
         try {
             context.compile();
-        } catch (Exception ex) {
-            context.print();
-            throw ex;
+
+            try {
+                context.print();
+            } catch (IOException ex) {
+                System.err.println("Error al escribir el código: " + ex.getLocalizedMessage());
+                System.exit(1);
+            }
+        } catch (CompilerException ex) {
+            System.err.println("Error de compilación: "+ex.getMessage());
+                System.exit(1);
         }
-        
-        context.print();
+
     }
 }
