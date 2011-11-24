@@ -16,7 +16,7 @@ public class Compilador {
     public static void main(String[] args) {
 
         Reader input = null;
-        Writer output;
+        Writer output = null;
         CompilerContext context;
         
         try {
@@ -25,6 +25,11 @@ public class Compilador {
         } catch (UnsupportedEncodingException ex) {
             System.err.println("No se ha podido cambiar la codificacion: "
                     + ex.getLocalizedMessage());
+        }
+        
+        if (args.length > 2) {
+            System.err.println("Demasiados argumentos.");
+            System.exit(1);
         }
         
 
@@ -38,8 +43,17 @@ public class Compilador {
         } else {
             input = new BufferedReader(new InputStreamReader(System.in));
         }
-
-        output = new BufferedWriter(new OutputStreamWriter(System.out));
+        
+        if (args.length > 1) {
+            try {
+                output = new BufferedWriter(new FileWriter(args[1]));
+            } catch (IOException ex) {
+                System.err.println("Error al crear la salida: " + ex.getLocalizedMessage());
+                System.exit(1);
+            }
+        } else {
+            output = new BufferedWriter(new OutputStreamWriter(System.out));
+        }
 
         context = new CompilerContext(input, output);
 

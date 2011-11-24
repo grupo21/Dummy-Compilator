@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author gmaiztegi
  */
-public class InstructionList implements Iterable {
+public class InstructionList implements Iterable<Instruction> {
     
     protected List<Instruction> instructions;
     

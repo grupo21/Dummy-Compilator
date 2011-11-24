@@ -47,23 +47,11 @@ public class CompilerContext {
     }
     
     public void print() throws IOException {
-        Iterator<Instruction> iter;
-        int counter;
+        int counter = 0;
         
-        iter = instructionList.iterator();
-        counter = 0;
-        
-        while(iter.hasNext()) {
-            Instruction instruction = iter.next();
-            String instr = instruction.getText();
-            output.println(counter+"\t"+instr);
+        for (Instruction instr : instructionList) {
+            output.println(counter+"\t"+instr.getText());
             counter++;
-        }
-        
-        output.println("Simbolos:");
-        
-        for (String symbol : symbolTable) {
-            output.println(symbol);
         }
     }
 }
