@@ -5,7 +5,6 @@
 package compilator.ETDS;
 
 import compilator.*;
-import compilator.Token.*;
 import compilator.Symbol.Symbol;
 
 /**
