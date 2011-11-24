@@ -1,20 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package compilator.Intermediate;
 
 import compilator.Symbol.Symbol;
 
 /**
- *
- * @author gmaiztegi
+ * Instrucción de declaración de una variable.
+ * @author Jon Aguirre <jaguirre026@ehu.es>
+ * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
+ * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public class DeclarationInstruction implements Instruction {
     
     protected String name;
     protected int type;
     
+    /**
+     * Devuelve la representación en texto del tipo de variable.
+     * @param type El tipo de variable.
+     * @return La representación en texto de type.
+     */
     public static String getTypeText(int type) {
         switch (type) {
             case Symbol.INTEGER:
@@ -26,6 +29,10 @@ public class DeclarationInstruction implements Instruction {
         }
     }
     
+    /**
+     * Construye una instrucción que declara una variable
+     * @param symbol El símbolo a declarar.
+     */
     public DeclarationInstruction(Symbol symbol) {
         if (!symbol.isType(Symbol.INTEGER) && !symbol.isType(Symbol.FLOAT)) {
             throw new IllegalArgumentException();

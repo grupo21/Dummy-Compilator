@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package compilator.Symbol;
 
 import java.util.ArrayDeque;
@@ -11,8 +7,10 @@ import java.util.Iterator;
 import java.util.Map;
 
 /**
- *
- * @author gmaiztegi
+ * Representación de la tabla de símbolos.
+ * @author Jon Aguirre <jaguirre026@ehu.es>
+ * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
+ * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public class SymbolTable implements Iterable<String> {
     
@@ -20,6 +18,9 @@ public class SymbolTable implements Iterable<String> {
     protected Deque<String> context;
     protected int tempCounter, contextCounter;
     
+    /**
+     * Inicializa la tabla de símbolos
+     */
     public SymbolTable() {
         this.table = new HashMap<String, Symbol>();
         context = new ArrayDeque<String>();
@@ -28,6 +29,11 @@ public class SymbolTable implements Iterable<String> {
         contextCounter = 0;
     }
     
+    /**
+     * Añade la variable a la tabla de símbolos con el contexto actual.
+     * @param symbol El símbolo a añadir.
+     * @throws RedefinedSymbolException si la variable ya estaba definida.
+     */
     public void add(Symbol symbol) throws RedefinedSymbolException {
         
         String fullname = getContext()+symbol.getName();
@@ -39,6 +45,12 @@ public class SymbolTable implements Iterable<String> {
         table.put(fullname, symbol);
     }
     
+    /**
+     * Obtiene la variable mediante su identificador.
+     * @param name El identificador de la variable.
+     * @return El símbolo de la variable, si este se ha encontrado.
+     * @throws UndeclaredSymbolException si el identificador no se encuentra en la tabla.
+     */
     public Symbol get(String name) throws UndeclaredSymbolException {
         Symbol symbol;
         Iterator<String> iter;
@@ -58,18 +70,11 @@ public class SymbolTable implements Iterable<String> {
         throw new UndeclaredSymbolException();
     }
     
-    public boolean exists(String name) {
-        return table.containsKey(name);
-    }
-    
-    public int getType(String name) throws UndeclaredSymbolException {
-        return this.get(name).getType();
-    }
-    
-    public boolean isType(String name, int type) throws UndeclaredSymbolException {
-        return type == this.get(name).getType();
-    }
-    
+    /**
+     * Crea una variable temporal en el contexto actual.
+     * @param type El tipo del que la variable temporal debe ser.
+     * @return La variable temporal recién creada.
+     */
     public Symbol createTemporary(int type) {
         int newId;
         Symbol temp;
@@ -86,6 +91,9 @@ public class SymbolTable implements Iterable<String> {
         return temp;
     }
     
+    /**
+     * Empila un nuevo contexto a la pila de contextos.
+     */
     public void pushContext() {
         String last, current;
         
@@ -96,10 +104,17 @@ public class SymbolTable implements Iterable<String> {
         context.push(current);
     }
     
+    /**
+     * Desempila el contexto superior.
+     */
     public void popContext() {
         context.pop();
     }
     
+    /**
+     * Devuelve el contexto actual.
+     * @return El prefijo del contexto actual.
+     */
     protected String getContext() {
         return context.peek();
     }

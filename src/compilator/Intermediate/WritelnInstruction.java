@@ -1,12 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package compilator.Intermediate;
 
 /**
- *
- * @author gmaiztegi
+ * Instrucción que escribe un salto de línea en la salida.
+ * @author Jon Aguirre <jaguirre026@ehu.es>
+ * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
+ * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public class WritelnInstruction implements Instruction {
 

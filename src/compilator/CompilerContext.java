@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package compilator;
 
 import compilator.ETDS.*;
@@ -13,8 +9,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
- * @author gmaiztegi
+ * Contexto de compilación, que contiene las variables globales
+ * @author Jon Aguirre <jaguirre026@ehu.es>
+ * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
+ * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public class CompilerContext {
     
@@ -27,6 +25,11 @@ public class CompilerContext {
     
     protected PrintWriter output;
     
+    /**
+     * Construye el contexto de compilación
+     * @param input La entrada del programa fuente
+     * @param output La salida para el código intermedio
+     */
     public CompilerContext(Reader input, Writer output) {
         this.tokenizer = new Tokenizer(input);
         this.symbolTable = new SymbolTable();
@@ -36,6 +39,10 @@ public class CompilerContext {
         this.output = new PrintWriter(output, true);
     }
     
+    /**
+     * Compila todo el código fuente.
+     * @throws CompilerException si ha habido cualquier tipo de error de compilación.
+     */
     public void compile() throws CompilerException {
         ETDS top;
         
@@ -44,6 +51,10 @@ public class CompilerContext {
         top.execute();
     }
     
+    /**
+     * Imprime el código intermedio por la salida
+     * @throws IOException si hay algún error al imprimir el código
+     */
     public void print() throws IOException {
         int counter = 0;
         

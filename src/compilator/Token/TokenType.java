@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package compilator.Token;
 
 import java.util.Arrays;
@@ -9,8 +5,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- *
- * @author gmaiztegi
+ * Clase que contiene los tipos de token y las palabras reservadas.
+ * @author Jon Aguirre <jaguirre026@ehu.es>
+ * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
+ * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public class TokenType {
     

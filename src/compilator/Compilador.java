@@ -3,7 +3,7 @@ package compilator;
 import java.io.*;
 
 /**
- * Programa de prueba para el analizador léxico
+ * Programa principal que ejecuta el compilador
  * @author Jon Aguirre <jaguirre026@ehu.es>
  * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
  * @author Gorka Maiztegi <gmaiztegi001@ehu.es>

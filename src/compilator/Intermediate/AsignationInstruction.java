@@ -1,14 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package compilator.Intermediate;
 
 import compilator.Symbol.*;
 
 /**
- *
- * @author gmaiztegi
+ * Instrucción de asignación de una variable a otra.
+ * @author Jon Aguirre <jaguirre026@ehu.es>
+ * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
+ * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public class AsignationInstruction implements Instruction {
     

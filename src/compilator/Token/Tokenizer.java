@@ -20,6 +20,10 @@ public class Tokenizer implements Enumeration {
     private Token current;
     private Deque<Token> cola;
     
+    /**
+     * Inicializa el tokenizador con la entrada.
+     * @param reader Entrada del código fuente.
+     */
     public Tokenizer(Reader reader) {
         scanner = new Scanner(reader);
         cola = new LinkedList<Token>();
@@ -121,11 +125,11 @@ public class Tokenizer implements Enumeration {
                 match = match.substring(idmatcher.end());
 
             } else if (floatmatcher.lookingAt()) {
-                cola.add(new FloatToken(floatmatcher.group(), TokenType.FLOAT));
+                cola.add(new FloatToken(floatmatcher.group()));
                 match = match.substring(floatmatcher.end());
 
             } else if (intmatcher.lookingAt()) {
-                cola.add(new IntegerToken(intmatcher.group(), TokenType.INTEGER));
+                cola.add(new IntegerToken(intmatcher.group()));
                 match = match.substring(intmatcher.end());
 
             } else if (doublematcher.lookingAt()) {
@@ -175,6 +179,9 @@ public class Tokenizer implements Enumeration {
         return this.current;
     }
     
+    /**
+     * Revierte el último token obtenido, para que este pueda ser obtenido otra vez.
+     */
     public void revert() {
         
         if (current == null) {

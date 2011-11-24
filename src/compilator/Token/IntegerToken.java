@@ -14,12 +14,20 @@ public class IntegerToken extends Token {
 
     protected int value;
     
-    public IntegerToken(String match, int type) {
-        super(match, type);
+    /**
+     * Construye un token del tipo entero y parsea su valor numérico
+     * @param match La cadena casada
+     */
+    public IntegerToken(String match) {
+        super(match, TokenType.INTEGER);
         
         this.value = Integer.parseInt(match);
     }
     
+    /**
+     * Obtiene el valor numérico del token.
+     * @return La representación en entero de lo casado.
+     */
     public int getValue() {
         return this.value;
     }

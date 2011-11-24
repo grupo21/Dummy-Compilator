@@ -1,19 +1,22 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package compilator.Intermediate;
 
 import compilator.Symbol.*;
 
 /**
- *
- * @author gmaiztegi
+ * Instrucción para declarar el principio de un subprograma.
+ * @author Jon Aguirre <jaguirre026@ehu.es>
+ * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
+ * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public class ProcInstruction implements Instruction {
     
     protected String name;
     
+    /**
+     * Construye la instrucción de inicio de subprograma.
+     * @param symbol Símbolo del nombre del subprograma.
+     * @throws IncompatibleTypesException si el símbolo del argumento no es un subprograma.
+     */
     public ProcInstruction(Symbol symbol) throws IncompatibleTypesException {
         TypeSemantics.checkType(symbol, Symbol.PROCEDURE);
         

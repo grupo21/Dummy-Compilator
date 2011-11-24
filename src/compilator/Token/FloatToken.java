@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package compilator.Token;
 
 /**
@@ -14,12 +10,20 @@ public class FloatToken extends Token {
     
     protected float value;
 
-    public FloatToken(String match, int type) {
-        super(match, type);
+    /**
+     * Construye el token con la cadena casada y obtiene su valor numérico.
+     * @param match La cadena casada.
+     */
+    public FloatToken(String match) {
+        super(match, TokenType.FLOAT);
         
         Float.parseFloat(match);
     }
     
+    /**
+     * Obtiene el valor numérico del token.
+     * @return La representación numérica del string casado.
+     */
     public float getValue() {
         return this.value;
     }

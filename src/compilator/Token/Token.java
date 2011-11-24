@@ -9,11 +9,10 @@ package compilator.Token;
 public class Token implements Cloneable {
     
     private String match;
-    
     private int type;
     
     /**
-     * 
+     * Construye un token con la cadena casada y el tipo.
      * @param match Cadena de caracteres que componen el Token
      * @param type Identificador del tipo de token
      */
@@ -23,20 +22,29 @@ public class Token implements Cloneable {
         this.type = type;
     }
     
+    /**
+     * Devuelve la cadena de caracteres que ha casado.
+     * @return La cadena de caracteres del token.
+     */
     public String getMatch() {
-        return this.match;
+        return match;
     }
     
     /**
-     * Imprime en pantalla información debug sobre el token
+     * Devuelve información detallada acerca del token.
+     * @return Cadena imprimible para debug.
      */
-    public void printInfo()
+    public String getInfo()
     {
-        System.out.println(this.match+"\t\t"+TokenType.toString(this.type));
+        return match + "\t\t" + TokenType.toString(type);
     }
     
+    /**
+     * Devuelve el tipo de token.
+     * @return Tipo de token.
+     */
     public int getType() {
-        return this.type;
+        return type;
     }
     
     /**

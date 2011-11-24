@@ -1,16 +1,18 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package compilator.ETDS;
 
 import compilator.CompilerException;
 
 /**
- *
- * @author gmaiztegi
+ * Interfaz a implementar por todas las ETDSs
+ * @author Jon Aguirre <jaguirre026@ehu.es>
+ * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
+ * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public interface ETDS {
     
+    /**
+     * Ejecuta la ETDS
+     * @throws CompilerException si ha habido algún problema de compilación.
+     */
     public void execute() throws CompilerException;
 }
