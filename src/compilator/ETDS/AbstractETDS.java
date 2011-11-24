@@ -25,7 +25,11 @@ public abstract class AbstractETDS implements ETDS {
         this.context = context;
     }
     
-    protected Token expectType(int type) throws SyntaxException {
+    protected Token expectType (int type) throws SyntaxException {
+        return expectType(type, false);
+    }
+    
+    protected Token expectType(int type, boolean soft) throws SyntaxException {
         Token token;
         
         if (!context.tokenizer.hasMoreElements()) {
@@ -43,13 +47,21 @@ public abstract class AbstractETDS implements ETDS {
         token = context.tokenizer.nextElement();
         
         if (!token.isType(type)) {
-            throw new SyntaxException(token.getMatch(), context.expectedList);
+            if (soft) {
+                throw new NoMatchException(token.getMatch(), context.expectedList);
+            } else {
+                throw new SyntaxException(token.getMatch(), context.expectedList);
+            }
         }
         
         return token;
     }
     
     protected Token expectString(String str) throws SyntaxException {
+        return expectString(str, false);
+    }
+    
+    protected Token expectString(String str, boolean soft) throws SyntaxException {
         Token token;
         
         
@@ -69,7 +81,11 @@ public abstract class AbstractETDS implements ETDS {
         
         
         if (!token.getMatch().equals(str)) {
-            throw new SyntaxException(token.getMatch(), context.expectedList);
+            if (soft) {
+                throw new NoMatchException(token.getMatch(), context.expectedList);
+            } else {
+                throw new SyntaxException(token.getMatch(), context.expectedList);
+            }
         }
         
         return token;

@@ -20,7 +20,7 @@ public class SubprogramDeclarations extends AbstractETDS {
     public void execute() throws CompilerException {
         try {
             new SubprogramDeclaration(context).execute();
-        } catch (SyntaxException ex) {
+        } catch (NoMatchException ex) {
             revert();
             return;
         }

@@ -17,6 +17,10 @@ public class SyntaxException extends CompilerException {
     protected List<String> expected;
     protected String got;
     
+    public SyntaxException(SyntaxException ex) {
+        this(ex.got, ex.expected);
+    }
+    
     public SyntaxException(String got, String expected) {
         this.got = got;
         this.expected = new LinkedList<String>();
@@ -25,7 +29,7 @@ public class SyntaxException extends CompilerException {
     
     public SyntaxException(String got, List <String> expected) {
         this.got = got;
-        this.expected = expected;
+        this.expected = new LinkedList<String>(expected);
     }
 
     @Override

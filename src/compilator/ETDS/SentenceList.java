@@ -20,11 +20,10 @@ public class SentenceList extends AbstractETDS {
     public void execute() throws CompilerException {
         try {
             new Sentence(context).execute();
-        } catch (SyntaxException ex) {
+            new SentenceList(context).execute();
+        } catch (NoMatchException ex) {
             revert();
             return;
         }
-        
-        new SentenceList(context).execute();
     }
 }
