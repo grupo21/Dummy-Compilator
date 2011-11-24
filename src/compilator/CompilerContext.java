@@ -5,12 +5,10 @@
 package compilator;
 
 import compilator.ETDS.*;
-import compilator.Intermediate.InstructionList;
+import compilator.Intermediate.*;
 import compilator.Token.Tokenizer;
-import compilator.Intermediate.Instruction;
 import compilator.Symbol.SymbolTable;
 import java.io.*;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
