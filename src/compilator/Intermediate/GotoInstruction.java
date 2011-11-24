@@ -22,7 +22,8 @@ public class GotoInstruction implements Instruction, CompletableInstruction {
     
     @Override
     public String getText() {
-        return "goto "+where.index+";";
+        String idx = where != null ? String.valueOf(where.index) : "__";
+        return "goto "+idx+";";
     }
 
     @Override
