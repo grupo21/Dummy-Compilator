@@ -12,7 +12,7 @@ import compiler.symbol.Symbol;
  */
 public class SubprogramHeader extends AbstractETDS {
     
-    public String progid;
+    public Symbol progid;
     
     public SubprogramHeader(CompilerContext context) {
         super(context);
@@ -21,13 +21,12 @@ public class SubprogramHeader extends AbstractETDS {
     @Override
     public void execute() throws CompilerException {
         Token idtoken;
-        Symbol id;
         
         expectString("procedure", true);
         
         idtoken = expectType(TokenType.IDENTIFIER);
-        id = addSymbol(idtoken.getMatch(), Symbol.PROCEDURE);
-        addInstruction(new ProcInstruction(id));
+        progid = addSymbol(idtoken.getMatch(), Symbol.PROCEDURE);
+        addInstruction(new ProcInstruction(progid));
         
         pushContext();
         

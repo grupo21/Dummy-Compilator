@@ -25,7 +25,7 @@ public class OperationInstruction extends AsignationInstruction {
         super(out, in);
         
         TypeSemantics.checkScalar(in2);
-        TypeSemantics.checkEqual(in, in2);
+        TypeSemantics.checkEqualType(in, in2);
         
         idin2 = in2.getName();
         this.operator = operator;

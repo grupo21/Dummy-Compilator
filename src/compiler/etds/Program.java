@@ -2,9 +2,8 @@ package compiler.etds;
 
 import compiler.token.*;
 import compiler.*;
-import compiler.intermediate.HaltInstruction;
-import compiler.intermediate.ProgInstruction;
-import compiler.symbol.Symbol;
+import compiler.intermediate.*;
+import compiler.symbol.*;
 
 /**
  * @author Jon Aguirre <jaguirre026@ehu.es>
@@ -48,6 +47,10 @@ public class Program extends AbstractETDS {
         OptionalIdentifier optid = new OptionalIdentifier(context);
         optid.execute();
         expectString(";");
+        
+        if (optid.id != null) {
+            TypeSemantics.checkEqualId(program.getName(), optid.id);
+        }
         
         addInstruction(new HaltInstruction());
         

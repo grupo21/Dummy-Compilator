@@ -16,7 +16,7 @@ public class AsignationInstruction implements Instruction {
         
         TypeSemantics.checkScalar(out);
         TypeSemantics.checkScalar(in);
-        TypeSemantics.checkEqual(in, out);
+        TypeSemantics.checkEqualType(in, out);
         
         this.idout = out.getName();
         this.idin = in.getName();

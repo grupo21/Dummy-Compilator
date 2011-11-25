@@ -1,5 +1,7 @@
 package compiler.symbol;
 
+import compiler.SemanticException;
+
 /**
  * Clase con métodos estáticos para comprobación de tipos.
  * @author Jon Aguirre <jaguirre026@ehu.es>
@@ -21,13 +23,20 @@ public class TypeSemantics {
         }
     }
 
+    public static void checkEqualId (String id1, String id2) throws SemanticException {
+        if (!id1.equals(id2)) {
+            throw new SemanticException("Los identificadores "+id1+" y "+id2
+                    + " no son iguales.");
+        }
+    }
+    
     /**
      * Comprueba que los tipos de ambos símbolos sean iguales sean iguales / compatibles.
      * @param symbol1 El primer símbolo
      * @param symbol2 El segundo símbolo
      * @throws IncompatibleTypesException si los tipos no son iguales.
      */
-    public static void checkEqual (Symbol symbol1, Symbol symbol2) throws IncompatibleTypesException {
+    public static void checkEqualType (Symbol symbol1, Symbol symbol2) throws IncompatibleTypesException {
         if (!symbol1.isType(symbol2.getType())) {
             throw new IncompatibleTypesException("Los símbolos "+symbol1.getName()
                     + " y "+symbol2.getName()+" no son del mismo tipo: "

@@ -2,6 +2,7 @@ package compiler.etds;
 
 import compiler.*;
 import compiler.intermediate.EndProcInstruction;
+import compiler.symbol.TypeSemantics;
 
 /**
  * @author Jon Aguirre <jaguirre026@ehu.es>
@@ -37,9 +38,11 @@ public class SubprogramDeclaration extends AbstractETDS {
         
         expectString(";");
         
-        addInstruction(new EndProcInstruction());
+        if (optid.id != null) {
+            TypeSemantics.checkEqualId(header.progid.getName(), optid.id);
+        }
         
-        // Comprobar que los ids del principio y final son iguales.
+        addInstruction(new EndProcInstruction());
     }
     
 }
