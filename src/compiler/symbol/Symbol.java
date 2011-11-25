@@ -13,6 +13,23 @@ public class Symbol {
     public static final int FUNCTION = 3;
     public static final int PROGRAM = 4;
     
+    public static String getTypeName(int type) {
+        switch (type) {
+            case INTEGER:
+                return "integer";
+            case FLOAT:
+                return "float";
+            case PROCEDURE:
+                return "procedure";
+            case FUNCTION:
+                return "function";
+            case PROGRAM:
+                return "program";
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
+    
     protected String name;
     protected int type;
     

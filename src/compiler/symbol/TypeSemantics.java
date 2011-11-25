@@ -16,7 +16,8 @@ public class TypeSemantics {
      */
     public static void checkType (Symbol symbol, int type) throws IncompatibleTypesException {
         if (!symbol.isType(type)) {
-            throw new IncompatibleTypesException();
+            throw new IncompatibleTypesException("El símbolo "+symbol.getName()+
+                    "no es del tipo "+Symbol.getTypeName(type)+".");
         }
     }
 
@@ -28,7 +29,10 @@ public class TypeSemantics {
      */
     public static void checkEqual (Symbol symbol1, Symbol symbol2) throws IncompatibleTypesException {
         if (!symbol1.isType(symbol2.getType())) {
-            throw new IncompatibleTypesException();
+            throw new IncompatibleTypesException("Los símbolos "+symbol1.getName()
+                    + " y "+symbol2.getName()+" no son del mismo tipo: "
+                    + Symbol.getTypeName(symbol1.getType()) + " y " 
+                    +Symbol.getTypeName(symbol2.getType()) + ".");
         }
     }
     
@@ -40,7 +44,8 @@ public class TypeSemantics {
     public static void checkScalar (Symbol symbol) throws IncompatibleTypesException {
         if (!symbol.isType(Symbol.INTEGER)
              && !symbol.isType(Symbol.FLOAT)) {
-            throw new IncompatibleTypesException();
+            throw new IncompatibleTypesException("El símbolo "+symbol.getName()
+                    + " no es un tipo escalar.");
         }
     }
     
@@ -52,7 +57,8 @@ public class TypeSemantics {
     public static void checkCallable (Symbol symbol) throws IncompatibleTypesException {
         if (!symbol.isType(Symbol.PROCEDURE)
                 && !symbol.isType(Symbol.FUNCTION)) {
-            throw new IncompatibleTypesException();
+            throw new IncompatibleTypesException("El símbolo " + symbol.getName()
+                    + " no es llamable.");
         }
     }
 }

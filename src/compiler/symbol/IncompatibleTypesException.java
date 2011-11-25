@@ -9,5 +9,7 @@ import compiler.SemanticException;
  * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public class IncompatibleTypesException extends SemanticException {
-    
+    public IncompatibleTypesException(String msg) {
+        super(msg);
+    }
 }
