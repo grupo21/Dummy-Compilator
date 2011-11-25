@@ -144,7 +144,6 @@ public class Tokenizer implements Enumeration {
                 /**
                  * Si nada ha coincidido se sale del programa con un error.
                  */
-                System.out.flush();
                 System.err.println("Error de lexico con "+match);
                 System.exit(1);
             }
