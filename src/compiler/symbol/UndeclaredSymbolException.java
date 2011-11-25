@@ -9,5 +9,7 @@ import compiler.SemanticException;
  * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public class UndeclaredSymbolException extends SemanticException {
-    
+    public UndeclaredSymbolException(String id) {
+        super("Utilización de variable no declarada en contexto: "+id+".");
+    }
 }

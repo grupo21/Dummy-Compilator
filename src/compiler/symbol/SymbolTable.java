@@ -39,7 +39,7 @@ public class SymbolTable implements Iterable<String> {
         String fullname = getContext()+symbol.getName();
         
         if (table.containsKey(fullname)) {
-            throw new RedefinedSymbolException();
+            throw new RedefinedSymbolException(symbol.getName());
         }
         
         table.put(fullname, symbol);
@@ -67,7 +67,7 @@ public class SymbolTable implements Iterable<String> {
             }
         }
         
-        throw new UndeclaredSymbolException();
+        throw new UndeclaredSymbolException(name);
     }
     
     /**

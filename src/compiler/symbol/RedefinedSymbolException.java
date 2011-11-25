@@ -9,5 +9,7 @@ import compiler.SemanticException;
  * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public class RedefinedSymbolException extends SemanticException {
-    
+    public RedefinedSymbolException (String id) {
+        super("Se ha intentado declarar otra vez la variable "+id+".");
+    }
 }
