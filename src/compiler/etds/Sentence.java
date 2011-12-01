@@ -42,7 +42,7 @@ class Sentence extends AbstractETDS {
 
             Marker m1, m2, m3, n;
 
-            BooleanExpression expr = new BooleanExpression(context);
+            Comparation expr = new Comparation(context);
             expr.execute();
 
             m1 = getMarker();
@@ -73,7 +73,7 @@ class Sentence extends AbstractETDS {
         try {
             expectString("while", true);
             Marker m1, m2, m3, n;
-            BooleanExpression expr = new BooleanExpression(context);
+            Comparation expr = new Comparation(context);
 
             m1 = getMarker();
             expr.execute();
@@ -100,7 +100,7 @@ class Sentence extends AbstractETDS {
             expectString("repeat", true);
 
             Marker m1, m2;
-            BooleanExpression expr;
+            Comparation expr;
 
             m1 = getMarker();
 
@@ -108,7 +108,7 @@ class Sentence extends AbstractETDS {
 
             expectString("until");
 
-            expr = new BooleanExpression(context);
+            expr = new Comparation(context);
             expr.execute();
 
             m2 = getMarker();

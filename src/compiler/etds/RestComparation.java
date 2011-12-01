@@ -10,11 +10,11 @@ import compiler.symbol.Symbol;
  * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
  * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
-class RestBooleanExpression extends AbstractETDS {
+class RestComparation extends AbstractETDS {
     
     public Symbol hsymbol;
     
-    public RestBooleanExpression(CompilerContext context) {
+    public RestComparation(CompilerContext context) {
         super(context);
     }
 

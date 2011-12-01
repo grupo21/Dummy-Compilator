@@ -6,23 +6,22 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * ETDS que compila una expresión booleana.
  * @author Jon Aguirre <jaguirre026@ehu.es>
  * @author Ander Arbelaitz <aarbelaiz004@ehu.es>
  * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
-class BooleanExpression extends AbstractETDS {
+class Comparation extends AbstractETDS {
     
     public List<Marker> truelist, falselist;
 
-    public BooleanExpression(CompilerContext context) {
+    public Comparation(CompilerContext context) {
         super(context);
     }
 
     @Override
     public void execute() throws CompilerException {
         SimpleExpression expr;
-        RestBooleanExpression rest;
+        RestComparation rest;
         
         expr = new SimpleExpression(context);
         expr.execute();
@@ -33,7 +32,7 @@ class BooleanExpression extends AbstractETDS {
         falselist = new LinkedList<Marker>();
         falselist.add(getMarker().add(1));
         
-        rest = new RestBooleanExpression(context);
+        rest = new RestComparation(context);
         rest.hsymbol = expr.result;
         rest.execute();
         
