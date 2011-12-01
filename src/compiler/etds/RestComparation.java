@@ -2,7 +2,6 @@ package compiler.etds;
 
 import compiler.CompilerContext;
 import compiler.CompilerException;
-import compiler.intermediate.IfGotoInstruction;
 import compiler.symbol.Symbol;
 
 /**
@@ -12,7 +11,8 @@ import compiler.symbol.Symbol;
  */
 class RestComparation extends AbstractETDS {
     
-    public Symbol hsymbol;
+    public Symbol result;
+    public String operator;
     
     public RestComparation(CompilerContext context) {
         super(context);
@@ -21,33 +21,32 @@ class RestComparation extends AbstractETDS {
     @Override
     public void execute() throws CompilerException {
         SimpleExpression expr;
-        String operation;
         
         try {
             expectString("=");
-            operation = "=";
+            operator = "=";
         } catch (SyntaxException e) {
             revert();
             
             try {
                 expectString("<");
-                operation = "<";
+                operator = "<";
             } catch (SyntaxException ee) {
                 revert();
                 
                 try {
                     expectString(">");
-                    operation = ">";
+                    operator = ">";
                 } catch (SyntaxException eee) {
                     revert();
                     
                     try {
                         expectString("<=");
-                        operation = "<=";
+                        operator = "<=";
                     } catch (SyntaxException eeee) {
                         revert();
                         expectString(">=");
-                        operation = ">=";
+                        operator = ">=";
                     }
                     
                 }
@@ -56,7 +55,6 @@ class RestComparation extends AbstractETDS {
         
         expr = new SimpleExpression(context);
         expr.execute();
-        
-        addInstruction(new IfGotoInstruction(hsymbol, expr.result, operation));
+        result = expr.result;
     }
 }

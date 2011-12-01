@@ -26,17 +26,14 @@ class Comparation extends AbstractETDS {
         expr = new SimpleExpression(context);
         expr.execute();
         
-        truelist = new LinkedList<Marker>();
-        truelist.add(getMarker());
-        
-        falselist = new LinkedList<Marker>();
-        falselist.add(getMarker().add(1));
-        
         rest = new RestComparation(context);
-        rest.hsymbol = expr.result;
         rest.execute();
         
-        addInstruction(new GotoInstruction());
+        truelist = new LinkedList<Marker>();
+        falselist = new LinkedList<Marker>();
+        
+        truelist.add(addInstruction(new IfGotoInstruction(expr.result, rest.result, rest.operator)));
+        falselist.add(addInstruction(new GotoInstruction()));
     }
     
 }
