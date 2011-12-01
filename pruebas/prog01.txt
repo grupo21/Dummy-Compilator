@@ -9,8 +9,9 @@ program ejemplo is
             c:=b;
             aux := aux - 1 ;
             c := c+1;
-        until aux > 0 endrepeat ;
-        while 3 < 4 do
+        until aux > 0 or 1 <= 1 endrepeat ;
+        while (not (1<2 and 3<=4) or not 1=2) and 3<3 and 5>6 do
+            put_line(c*c);
         endwhile;
     endprocedure sumar;
     begin

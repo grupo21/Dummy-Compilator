@@ -42,9 +42,11 @@ class Sentence extends AbstractETDS {
 
             Marker m1, m2, m3, n;
 
-            Comparation expr = new Comparation(context);
-            expr.execute();
-
+            Disjunction disj = new Disjunction(context);
+            disj.execute();
+            
+            expectString("then");
+            
             m1 = getMarker();
 
             new SentenceList(context).execute();
@@ -60,8 +62,8 @@ class Sentence extends AbstractETDS {
             expectString(";");
             m3 = getMarker();
 
-            completeGotos(expr.truelist, m1);
-            completeGotos(expr.falselist, m2);
+            completeGotos(disj.truelist, m1);
+            completeGotos(disj.falselist, m2);
             completeGoto(n, m3);
             
             return;
@@ -73,7 +75,7 @@ class Sentence extends AbstractETDS {
         try {
             expectString("while", true);
             Marker m1, m2, m3, n;
-            Comparation expr = new Comparation(context);
+            Disjunction expr = new Disjunction(context);
 
             m1 = getMarker();
             expr.execute();
@@ -100,7 +102,7 @@ class Sentence extends AbstractETDS {
             expectString("repeat", true);
 
             Marker m1, m2;
-            Comparation expr;
+            Disjunction disj;
 
             m1 = getMarker();
 
@@ -108,13 +110,13 @@ class Sentence extends AbstractETDS {
 
             expectString("until");
 
-            expr = new Comparation(context);
-            expr.execute();
+            disj = new Disjunction(context);
+            disj.execute();
 
             m2 = getMarker();
 
-            completeGotos(expr.truelist, m2);
-            completeGotos(expr.falselist, m1);
+            completeGotos(disj.truelist, m2);
+            completeGotos(disj.falselist, m1);
 
             expectString("endrepeat");
             expectString(";");
