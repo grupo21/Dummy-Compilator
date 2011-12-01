@@ -75,10 +75,10 @@ class Sentence extends AbstractETDS {
         try {
             expectString("while", true);
             Marker m1, m2, m3, n;
-            Disjunction expr = new Disjunction(context);
+            Disjunction disj = new Disjunction(context);
 
             m1 = getMarker();
-            expr.execute();
+            disj.execute();
             expectString("do");
             m2 = getMarker();
             new SentenceList(context).execute();
@@ -90,8 +90,8 @@ class Sentence extends AbstractETDS {
 
             m3 = getMarker();
 
-            completeGotos(expr.truelist, m2);
-            completeGotos(expr.falselist, m3);
+            completeGotos(disj.truelist, m2);
+            completeGotos(disj.falselist, m3);
 
             return;
 
