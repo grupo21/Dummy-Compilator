@@ -4,6 +4,7 @@ import compiler.token.*;
 import compiler.*;
 import compiler.intermediate.*;
 import compiler.symbol.*;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public abstract class AbstractETDS implements ETDS {
      * @return El token obtenido.
      * @throws SyntaxException Si el token obtenido no era del tipo esperado.
      */
-    protected Token expectType (int type) throws SyntaxException {
+    protected Token expectType (int type) throws SyntaxException, IOException, LexicException {
         return expectType(type, false);
     }
     
@@ -42,7 +43,7 @@ public abstract class AbstractETDS implements ETDS {
      * @throws SyntaxException Si el token obtenido no era del tipo esperado.
      * @throws NoMatchException Si el token no era el esperado, pero soft era verdadero.
      */
-    protected Token expectType(int type, boolean soft) throws SyntaxException {
+    protected Token expectType(int type, boolean soft) throws SyntaxException, IOException, LexicException {
         Token token;
         
         if (!context.tokenizer.hasMoreElements()) {
@@ -70,7 +71,7 @@ public abstract class AbstractETDS implements ETDS {
         return token;
     }
     
-    protected Token expectString(String str) throws SyntaxException {
+    protected Token expectString(String str) throws SyntaxException, IOException, LexicException {
         return expectString(str, false);
     }
     
@@ -82,7 +83,7 @@ public abstract class AbstractETDS implements ETDS {
      * @throws SyntaxException Si el token obtenido no era el esperado.
      * @throws NoMatchException Si el token no era el esperado, pero soft era verdadero.
      */
-    protected Token expectString(String str, boolean soft) throws SyntaxException {
+    protected Token expectString(String str, boolean soft) throws SyntaxException, IOException, LexicException {
         Token token;
         
         
@@ -116,7 +117,7 @@ public abstract class AbstractETDS implements ETDS {
      * Se espera que ya no haya más tokens que analizar.
      * @throws SyntaxException Si no se ha llegado al final.
      */
-    protected void expectEnd() throws SyntaxException {
+    protected void expectEnd() throws SyntaxException, IOException, LexicException {
         if (context.tokenizer.hasMoreElements()) {
             throw new SyntaxException(context.tokenizer.nextElement().getMatch(), "'fin de fichero'");
         }
