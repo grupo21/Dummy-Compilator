@@ -14,8 +14,8 @@ public class FloatToken extends Token {
      * Construye el token con la cadena casada y obtiene su valor numérico.
      * @param match La cadena casada.
      */
-    public FloatToken(String match) {
-        super(match, TokenType.FLOAT);
+    public FloatToken(String match, int linenum) {
+        super(match, TokenType.FLOAT, linenum);
         
         Float.parseFloat(match);
     }

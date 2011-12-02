@@ -9,17 +9,18 @@ package compiler.token;
 public class Token implements Cloneable {
     
     private String match;
-    private int type;
+    private int type, linenum;
     
     /**
      * Construye un token con la cadena casada y el tipo.
      * @param match Cadena de caracteres que componen el Token
      * @param type Identificador del tipo de token
      */
-    public Token(String match, int type)
+    public Token(String match, int type, int linenum)
     {
         this.match = match;
         this.type = type;
+        this.linenum = linenum;
     }
     
     /**
@@ -55,5 +56,13 @@ public class Token implements Cloneable {
     public Boolean isType(int type)
     {
         return this.type == type;
+    }
+    
+    /**
+     * Devuelve el número de línea en el que se encontraba el token.
+     * @return El número de línea.
+     */
+    public int getLineNumber() {
+        return linenum;
     }
 }

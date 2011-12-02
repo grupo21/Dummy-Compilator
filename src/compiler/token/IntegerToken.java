@@ -18,8 +18,8 @@ public class IntegerToken extends Token {
      * Construye un token del tipo entero y parsea su valor numérico
      * @param match La cadena casada
      */
-    public IntegerToken(String match) {
-        super(match, TokenType.INTEGER);
+    public IntegerToken(String match, int linenum) {
+        super(match, TokenType.INTEGER, linenum);
         
         this.value = Integer.parseInt(match);
     }
