@@ -3,7 +3,6 @@ program Error_For3 is
 var a, b: integer;
 begin
 get(b);
-for a ascending from 1 to 5
+for a ascending from 1 to 5 do
 put_line(b);
-endfor;
-endprogram
+endprogram;

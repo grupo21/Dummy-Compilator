@@ -21,12 +21,12 @@ endprocedure Sin_Uso;
 begin
 get(a); get(b); get(d); get(e);
 j:=10;
-for i from 1 to j do
+for i ascending from 1 to j do
 c:=c+((b*i)-(a-i));
 endfor;
-i:=1
+i:=1;
 repeat
-f:=f+((e/i)+(d+i));
+f:=f+((e/5.0)+(d+0.4));
 i:=i+1;
 until f>100 or f>c endrepeat;
 put_line(c);
