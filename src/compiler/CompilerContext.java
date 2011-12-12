@@ -30,7 +30,7 @@ public class CompilerContext {
      * @param input La entrada del programa fuente
      * @param output La salida para el código intermedio
      */
-    public CompilerContext(Reader input, Writer output) {
+    public CompilerContext(Reader input, Writer output) throws IOException {
         this.tokenizer = new Tokenizer(input);
         this.symbolTable = new SymbolTable();
         this.instructionList = new InstructionList();
