@@ -31,7 +31,7 @@ public abstract class AbstractETDS implements ETDS {
      * @return El token obtenido.
      * @throws SyntaxException Si el token obtenido no era del tipo esperado.
      */
-    protected Token expectType (int type) throws SyntaxException, IOException, LexicException {
+    protected Token expectType (int type) throws SyntaxException, LexicException {
         return expectType(type, false);
     }
     
@@ -43,11 +43,11 @@ public abstract class AbstractETDS implements ETDS {
      * @throws SyntaxException Si el token obtenido no era del tipo esperado.
      * @throws NoMatchException Si el token no era el esperado, pero soft era verdadero.
      */
-    protected Token expectType(int type, boolean soft) throws SyntaxException, IOException, LexicException {
+    protected Token expectType(int type, boolean soft) throws SyntaxException, LexicException {
         Token token;
         
         if (!context.tokenizer.hasMoreElements()) {
-            throw new SyntaxException(null, TokenType.toString(type));
+            throw new SyntaxException(null, 0, TokenType.toString(type));
         }
         
         if (!context.reverted) {
@@ -58,20 +58,24 @@ public abstract class AbstractETDS implements ETDS {
         
         context.expectedList.add(TokenType.toString(type));
         
-        token = context.tokenizer.nextElement();
+        try {
+            token = context.tokenizer.nextElement();
+        } catch (IOException ex) {
+            throw new LexicException("Error de entrada: "+ex.getLocalizedMessage());
+        }
         
         if (!token.isType(type)) {
             if (soft) {
-                throw new NoMatchException(token.getMatch(), context.expectedList);
+                throw new NoMatchException(token.getMatch(), token.getLineNumber(), context.expectedList);
             } else {
-                throw new SyntaxException(token.getMatch(), context.expectedList);
+                throw new SyntaxException(token.getMatch(), token.getLineNumber(), context.expectedList);
             }
         }
         
         return token;
     }
     
-    protected Token expectString(String str) throws SyntaxException, IOException, LexicException {
+    protected Token expectString(String str) throws SyntaxException, LexicException {
         return expectString(str, false);
     }
     
@@ -83,12 +87,12 @@ public abstract class AbstractETDS implements ETDS {
      * @throws SyntaxException Si el token obtenido no era el esperado.
      * @throws NoMatchException Si el token no era el esperado, pero soft era verdadero.
      */
-    protected Token expectString(String str, boolean soft) throws SyntaxException, IOException, LexicException {
+    protected Token expectString(String str, boolean soft) throws SyntaxException, LexicException {
         Token token;
         
         
         if (!context.tokenizer.hasMoreElements()) {
-            throw new SyntaxException(null, str);
+            throw new SyntaxException(null, 0, str);
         }
         
         if (!context.reverted) {
@@ -99,14 +103,17 @@ public abstract class AbstractETDS implements ETDS {
         
         context.expectedList.add(str);
         
-        token = context.tokenizer.nextElement();
-        
+        try {
+            token = context.tokenizer.nextElement();
+        } catch (IOException ex) {
+            throw new LexicException("Error de entrada: "+ex.getLocalizedMessage());
+        }
         
         if (!token.getMatch().equals(str)) {
             if (soft) {
-                throw new NoMatchException(token.getMatch(), context.expectedList);
+                throw new NoMatchException(token.getMatch(), token.getLineNumber(), context.expectedList);
             } else {
-                throw new SyntaxException(token.getMatch(), context.expectedList);
+                throw new SyntaxException(token.getMatch(), token.getLineNumber(), context.expectedList);
             }
         }
         
@@ -117,9 +124,14 @@ public abstract class AbstractETDS implements ETDS {
      * Se espera que ya no haya más tokens que analizar.
      * @throws SyntaxException Si no se ha llegado al final.
      */
-    protected void expectEnd() throws SyntaxException, IOException, LexicException {
+    protected void expectEnd() throws SyntaxException, LexicException {
         if (context.tokenizer.hasMoreElements()) {
-            throw new SyntaxException(context.tokenizer.nextElement().getMatch(), "'fin de fichero'");
+            try {
+                Token token = context.tokenizer.nextElement();
+                throw new SyntaxException(context.tokenizer.nextElement().getMatch(), context.tokenizer.nextElement().getLineNumber(), "'fin de fichero'");
+            } catch (IOException ex) {
+                throw new LexicException("Error de entrada: "+ex.getLocalizedMessage());
+            }
         }
     }
     

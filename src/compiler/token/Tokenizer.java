@@ -85,8 +85,6 @@ public class Tokenizer {
         linenum = tokenizer.lineno();
         tokenizer.nextToken();
 
-        System.err.println(linenum + "\t" + match);
-
         /*
          * ... por lo que puede haber más de un token en esos caracteres,
          * por lo que analizamos para separarlo y añadir cada uno de los tokens

@@ -13,11 +13,11 @@ public class NoMatchException extends SyntaxException {
         super(ex);
     }
     
-    public NoMatchException(String got, String expected) {
-        super(got, expected);
+    public NoMatchException(String got, int lineGot, String expected) {
+        super(got, lineGot, expected);
     }
     
-    public NoMatchException(String got, List <String> expected) {
-        super(got, expected);
+    public NoMatchException(String got, int lineGot, List <String> expected) {
+        super(got, lineGot, expected);
     }
 }

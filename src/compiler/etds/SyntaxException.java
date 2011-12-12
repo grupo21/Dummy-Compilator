@@ -14,19 +14,22 @@ public class SyntaxException extends CompilerException {
     
     protected List<String> expected;
     protected String got;
+    protected int lineGot;
     
     public SyntaxException(SyntaxException ex) {
-        this(ex.got, ex.expected);
+        this(ex.got, ex.lineGot, ex.expected);
     }
     
-    public SyntaxException(String got, String expected) {
+    public SyntaxException(String got, int lineGot, String expected) {
         this.got = got;
+        this.lineGot = lineGot;
         this.expected = new LinkedList<String>();
         this.expected.add(expected);
     }
     
-    public SyntaxException(String got, List <String> expected) {
+    public SyntaxException(String got, int lineGot, List <String> expected) {
         this.got = got;
+        this.lineGot = lineGot;
         this.expected = new LinkedList<String>(expected);
     }
 
@@ -36,12 +39,13 @@ public class SyntaxException extends CompilerException {
         
         
         if (expected == null) {
-            return "Se esperaba fin de fichero, se ha obtenido \""+got+"\"";
+            return "Se esperaba fin de fichero, se ha obtenido \""+got
+                    +"\" en la línea "+lineGot+".";
         } else if (got == null) {
             return "Se esperaba \""+got+"\", se ha obtenido fin de fichero.";
         }
         
-        msg = "Se ha obtenido \""+got+"\", se esperaba: ";
+        msg = "Se ha obtenido \""+got+"\" en la línea "+lineGot+", se esperaba: ";
         
         for (String exp : expected) {
             msg += exp+" ";

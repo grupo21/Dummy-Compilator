@@ -9,5 +9,11 @@ import compiler.CompilerException;
  * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public class LexicException extends CompilerException {
+    public LexicException() {
+        super();
+    }
     
+    public LexicException(String msg) {
+        super(msg);
+    }
 }
