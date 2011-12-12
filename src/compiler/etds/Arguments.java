@@ -15,11 +15,15 @@ class Arguments extends AbstractETDS {
 
     @Override
     public void execute() throws CompilerException {
-        expectString("(");
-        
-        new ParameterList(context).execute();
-        
-        expectString(")");
+        try {
+            expectString("(", true);
+            
+            new ParameterList(context).execute();
+            
+            expectString(")");
+        } catch (NoMatchException ex) {
+            revert();
+        }
     }
     
 }
