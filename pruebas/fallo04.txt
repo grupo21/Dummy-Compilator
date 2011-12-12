@@ -1,0 +1,9 @@
+{*Error variable no declarada*}
+program ErrorTipos2 is
+var a, b: integer;
+begin
+get(a); 
+get(b);
+c:=a+b;
+put_line(c);
+endprogram;

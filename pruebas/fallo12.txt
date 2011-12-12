@@ -1,0 +1,8 @@
+{*Error doble declaración de una variable*}
+program Doble_Decl is
+var a: integer;
+var a: float;
+begin
+a:= 5.5;
+put_line(a);
+endprogram;

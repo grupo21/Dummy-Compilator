@@ -1,0 +1,15 @@
+{*Error contexto, variable del procedure usada en programa principal *}
+program ErrorContexto1 is
+var a, b: integer;
+var c: float;
+procedure Fallo (x: in integer) is
+var y: integer;
+begin
+put_line(x);
+endprocedure;
+begin
+get(a); 
+get(b);
+y:=a+b;
+put_line(y);
+endprogram;

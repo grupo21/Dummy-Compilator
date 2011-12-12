@@ -1,0 +1,10 @@
+{*Error al sumar dos variables de distinto tipo*}
+program ErrorTipos1 is
+var a: integer;
+var b, c: float;
+begin
+get(a); 
+get(b);
+c:=a+b;
+put_line(c);
+endprogram;

@@ -1,0 +1,9 @@
+{*Error  for sin finalizar*}
+program Error_For3 is
+var a, b: integer;
+begin
+get(b);
+for a ascending from 1 to 5
+put_line(b);
+endfor;
+endprogram

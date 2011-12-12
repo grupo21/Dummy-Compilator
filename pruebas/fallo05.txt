@@ -1,0 +1,13 @@
+{*Error procedure no cerrado*}
+program Proc_Sin_Cerrar is
+var a, b: integer;
+var c: float;
+procedure Fallo () is
+begin
+put_line(0);
+begin
+get(a); 
+get(b);
+c:=a+b;
+put_line(c);
+endprogram;

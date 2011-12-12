@@ -1,0 +1,10 @@
+{*Error al asignar numero real a una variable de distinto tipo*}
+program ErrorTipos3 is
+var a, b: integer;
+var c: float;
+begin
+get(a); 
+b:= 5.3;
+c:=a+b;
+put_line(c);
+endprogram;

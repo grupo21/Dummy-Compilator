@@ -1,0 +1,10 @@
+{*Error al asignar variables del mismo tipo a una variable de distinto tipo*}
+program ErrorTipos2 is
+var a, b: integer;
+var c: float;
+begin
+get(a); 
+get(b);
+c:=a+b;
+put_line(c);
+endprogram;

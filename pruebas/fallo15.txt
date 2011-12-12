@@ -1,0 +1,35 @@
+{*Programa correcto*}
+program Correcto is
+var a, b, c, i, j: integer;
+var d, e, f: float;
+{*Este procedure no se usa en el programa ya que no se ha realizado ese apartado opcional*}
+procedure Sin_Uso(x, y: in integer; res: out integer) is
+var aux1, aux2:integer;
+begin
+aux2:=0;
+if(x<y)then
+aux1:=x;
+else
+aux1:=y;
+endif;
+while(aux2<10)do
+aux1:=aux1*aux2;
+aux2:=aux2+1;
+endwhile;
+res:=aux1;
+endprocedure Sin_Uso;
+begin
+get(a); get(b); get(d); get(e);
+j:=10;
+for i from 1 to j do
+c:=c+((b*i)-(a-i));
+endfor;
+i:=1
+repeat
+f:=f+((e/i)+(d+i));
+i:=i+1;
+until f>100 or f>c endrepeat;
+put_line(c);
+put_line(f);
+endprogram Correcto;
+

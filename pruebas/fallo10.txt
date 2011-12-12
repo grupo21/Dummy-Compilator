@@ -1,0 +1,11 @@
+{*Error tipo de la variable del for*}
+program Error_For2 is
+var a, b: float;
+var c: integer;
+begin
+get(b);
+a:=1.5;
+for c ascending from a to 5 do
+put_line(b);
+endfor;
+endprogram;

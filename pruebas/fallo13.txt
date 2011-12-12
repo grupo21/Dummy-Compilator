@@ -1,0 +1,7 @@
+{*Error fin de programa con identificador diferente al identificador del programa*}
+program Error_Ident is
+var a: integer;
+begin
+get(a);
+put_line(a);
+endprogram Error_Id;

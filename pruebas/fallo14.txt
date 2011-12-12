@@ -1,0 +1,14 @@
+{*Cierre incorrecto if y for*}
+program Cierre_Incorrecto is
+var a, b, c: integer;
+begin
+get (a);
+get(b);
+get(c);
+if a<=b and c>b then
+while c>b do
+b:=b+1;
+endif;
+endwhile;
+put_line(b);
+endprogram;
