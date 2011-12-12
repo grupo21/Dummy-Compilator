@@ -32,6 +32,7 @@ public class Tokenizer {
         tokenizer.wordChars('_', '_');
         tokenizer.wordChars(':', ':');
         tokenizer.wordChars('<', '>');
+        tokenizer.wordChars('.', '.');
         tokenizer.whitespaceChars('\u0000', '\u0020');
         tokenizer.lowerCaseMode(true);
 
