@@ -2,7 +2,7 @@
 program Proc_Sin_Cerrar is
 var a, b: integer;
 var c: float;
-procedure Fallo () is
+procedure Fallo is
 begin
 put_line(0);
 begin
