@@ -85,8 +85,7 @@ public class SymbolTable implements Iterable<String> {
         try {
             add(temp);
         } catch (RedefinedSymbolException ex) {
-            System.err.print("Esto no debería haber pasado nunca");
-            System.exit(1);
+            throw new RuntimeException(ex);
         }
         
         return temp;

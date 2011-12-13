@@ -144,8 +144,7 @@ public class Tokenizer {
                 /**
                  * Si nada ha coincidido se sale del programa con un error.
                  */
-                System.err.println("Error de lexico con " + match);
-                System.exit(1);
+                throw new LexicException("Error de léxico: carácter raro.");
             }
         }
 
