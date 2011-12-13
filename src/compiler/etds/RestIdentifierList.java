@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class RestIdentifierList extends AbstractETDS {
     
-    public List<String> nameList;
+    public List<Token> nameList;
 
     public RestIdentifierList(CompilerContext context) {
         super(context);
@@ -26,7 +26,7 @@ public class RestIdentifierList extends AbstractETDS {
         } catch (SyntaxException ex) {
             revert();
             
-            nameList = new ArrayList<String>();
+            nameList = new ArrayList<Token>();
             
             return;
         }
@@ -38,6 +38,6 @@ public class RestIdentifierList extends AbstractETDS {
         
         nameList = rest.nameList;
         
-        nameList.add(idtoken.getMatch());
+        nameList.add(idtoken);
     }
 }

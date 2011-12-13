@@ -150,8 +150,8 @@ public abstract class AbstractETDS implements ETDS {
      * @return El símbolo recién creado.
      * @throws RedefinedSymbolException si el símbolo ya estaba definido en el contexto actual.
      */
-    protected Symbol addSymbol(String name, int type) throws RedefinedSymbolException {
-        Symbol symbol = new Symbol(name, type);
+    protected Symbol addSymbol(Token token, int type) throws RedefinedSymbolException {
+        Symbol symbol = new Symbol(token.getMatch(), type, token.getLineNumber());
         context.symbolTable.add(symbol);
         return symbol;
     }

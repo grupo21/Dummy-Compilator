@@ -80,7 +80,7 @@ public class SymbolTable implements Iterable<String> {
         Symbol temp;
         
         newId = tempCounter++;
-        temp = new Symbol("_t"+newId, type);
+        temp = new Symbol("_t"+newId, type, -1);
         try {
             add(temp);
         } catch (RedefinedSymbolException ex) {

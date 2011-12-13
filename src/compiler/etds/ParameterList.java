@@ -3,6 +3,7 @@ package compiler.etds;
 import compiler.*;
 import compiler.intermediate.ParameterDeclarationInstruction;
 import compiler.symbol.Symbol;
+import compiler.token.Token;
 import java.util.Iterator;
 
 /**
@@ -34,9 +35,8 @@ class ParameterList extends AbstractETDS {
         type = new Type(context);
         type.execute();
         
-        iter = idlist.nameList.iterator();
-        while (iter.hasNext()) {
-            Symbol var = addSymbol(iter.next(), type.type);
+        for (Token token : idlist.nameList) {
+            Symbol var = addSymbol(token, type.type);
             addInstruction(new ParameterDeclarationInstruction(var, classpair.reference));
         }
         

@@ -48,12 +48,12 @@ class Factor extends AbstractETDS {
                     return;
                 }
                 
-                result = new Symbol(token.getMatch(), Symbol.FLOAT);
+                result = new Symbol(token.getMatch(), Symbol.FLOAT, token.getLineNumber());
                 
                 return;
             }
             
-            result = new Symbol(token.getMatch(), Symbol.INTEGER);
+            result = new Symbol(token.getMatch(), Symbol.INTEGER, token.getLineNumber());
             
             return;
         }

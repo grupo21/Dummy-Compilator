@@ -164,9 +164,9 @@ class Sentence extends AbstractETDS {
             m2 = getMarker();
 
             if (mode.ascending) {
-                addInstruction(new OperationInstruction(var.var, var.var, new Symbol("1", Symbol.INTEGER), "+"));
+                addInstruction(new OperationInstruction(var.var, var.var, new Symbol("1", Symbol.INTEGER, -1), "+"));
             } else {
-                addInstruction(new OperationInstruction(var.var, var.var, new Symbol("1", Symbol.INTEGER), "-"));
+                addInstruction(new OperationInstruction(var.var, var.var, new Symbol("1", Symbol.INTEGER, -1), "-"));
             }
 
             addInstruction(new GotoInstruction(m1));

@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class IdentifierList extends AbstractETDS {
     
-    public List<String> nameList;
+    public List<Token> nameList;
 
     public IdentifierList(CompilerContext context) {
         super(context);
@@ -27,6 +27,6 @@ public class IdentifierList extends AbstractETDS {
         
         nameList = rest.nameList;
         
-        nameList.add(idtoken.getMatch());
+        nameList.add(idtoken);
     }    
 }

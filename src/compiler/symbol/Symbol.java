@@ -32,15 +32,17 @@ public class Symbol {
     
     protected String name;
     protected int type;
+    protected int lineNum;
     
     /**
      * Contruye una variable con su nombre y tipo.
      * @param name El identificador de la variable.
      * @param type El tipo de la variable.
      */
-    public Symbol(String name, int type) {
+    public Symbol(String name, int type, int lineNum) {
         this.name = name;
         this.type = type;
+        this.lineNum = lineNum;
     }
     
     /**
@@ -66,5 +68,13 @@ public class Symbol {
      */
     public boolean isType(int type) {
         return type == this.type;
+    }
+    
+    /**
+     * Devuelve la línea en la que se definió la variable.
+     * @return El número de línea.
+     */
+    public int getLineNum() {
+        return lineNum;
     }
 }

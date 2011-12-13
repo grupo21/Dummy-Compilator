@@ -3,6 +3,7 @@ package compiler.etds;
 import compiler.*;
 import compiler.intermediate.DeclarationInstruction;
 import compiler.symbol.Symbol;
+import compiler.token.Token;
 import java.util.Iterator;
 
 /**
@@ -40,14 +41,10 @@ public class Declarations extends AbstractETDS {
         
         expectString(";");
         
-        iter = idList.nameList.iterator();
-        
-        while (iter.hasNext()) {
-            Symbol var;
-            var = addSymbol(iter.next(), type.type);
+        for (Token token: idList.nameList) {
+            Symbol var = addSymbol(token, type.type);
             addInstruction(new DeclarationInstruction(var));
         }
-        
         
         new Declarations(context).execute();
     }

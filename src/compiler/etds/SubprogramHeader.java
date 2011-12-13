@@ -25,7 +25,7 @@ public class SubprogramHeader extends AbstractETDS {
         expectString("procedure", true);
         
         idtoken = expectType(TokenType.IDENTIFIER);
-        progid = addSymbol(idtoken.getMatch(), Symbol.PROCEDURE);
+        progid = addSymbol(idtoken, Symbol.PROCEDURE);
         addInstruction(new ProcInstruction(progid));
         
         pushContext();
