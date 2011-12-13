@@ -43,21 +43,19 @@ public class Tokenizer {
     }
 
     /**
-     * Devuelve el último token encontrado sin avanzar.
-     * @return El último Token devuelto
+     * Indica si hay más tokens por leer en la entrada.
+     * @return true si hay más tokens por leer, falso en caso contrario.
      */
-    public Token getLookahead() throws Exception {
-        if (current == null) {
-            throw new Exception("No se puede obtener el actual tras revertir.");
-        }
-
-        return this.current;
-    }
-
     public boolean hasMoreElements() {
         return !cola.isEmpty() || tokenizer.ttype != StreamTokenizer.TT_EOF;
     }
 
+    /**
+     * Lee la entrada y obtiene el siguiente token.
+     * @return El siguiente Token de la entrada.
+     * @throws IOException si ha habido un error al leer la entrada.
+     * @throws LexicException si se ha leído un caracter no reconocido o si hay comentarios sin cerrar.
+     */
     public Token nextElement() throws IOException, LexicException {
         String match;
         int linenum;
