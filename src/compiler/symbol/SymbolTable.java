@@ -39,7 +39,8 @@ public class SymbolTable implements Iterable<String> {
         String fullname = getContext()+symbol.getName();
         
         if (table.containsKey(fullname)) {
-            throw new RedefinedSymbolException(symbol.getName());
+            Symbol previous = table.get(fullname);
+            throw new RedefinedSymbolException(symbol.getName(), previous.getLineNum(), symbol.getLineNum());
         }
         
         table.put(fullname, symbol);
@@ -51,7 +52,7 @@ public class SymbolTable implements Iterable<String> {
      * @return El símbolo de la variable, si este se ha encontrado.
      * @throws UndeclaredSymbolException si el identificador no se encuentra en la tabla.
      */
-    public Symbol get(String name) throws UndeclaredSymbolException {
+    public Symbol get(String name, int lineNum) throws UndeclaredSymbolException {
         Symbol symbol;
         Iterator<String> iter;
         
@@ -67,7 +68,7 @@ public class SymbolTable implements Iterable<String> {
             }
         }
         
-        throw new UndeclaredSymbolException(name);
+        throw new UndeclaredSymbolException(name, lineNum);
     }
     
     /**

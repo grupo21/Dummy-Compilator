@@ -58,7 +58,7 @@ class Factor extends AbstractETDS {
             return;
         }
         
-        result = getSymbol(token.getMatch());
+        result = getSymbol(token);
     }
     
 }

@@ -159,8 +159,8 @@ public abstract class AbstractETDS implements ETDS {
     /**
      * @see compiler.symbol.SymbolTable#get(java.lang.String) 
      */
-    protected Symbol getSymbol(String name) throws UndeclaredSymbolException {
-        return context.symbolTable.get(name);
+    protected Symbol getSymbol(Token id) throws UndeclaredSymbolException {
+        return context.symbolTable.get(id.getMatch(), id.getLineNumber());
     }
     
     /**
