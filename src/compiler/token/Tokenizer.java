@@ -190,7 +190,7 @@ public class Tokenizer {
                     }
                 }
 
-                throw new LexicException();
+                throw new LexicException("Comentario no cerrado al final del fichero.");
             }
         }
 
