@@ -24,7 +24,7 @@ public class Program extends AbstractETDS {
         
         expectString("program");
         
-        id = expectType(TokenType.IDENTIFIER);
+        id = expectType(Token.IDENTIFIER);
         program = addSymbol(id, Symbol.PROGRAM);
         
         expectString("is");

@@ -21,7 +21,7 @@ public class OptionalIdentifier extends AbstractETDS {
         Token idtoken;
         
         try {
-            idtoken = expectType(TokenType.IDENTIFIER);
+            idtoken = expectType(Token.IDENTIFIER);
             
             id = idtoken.getMatch();
             

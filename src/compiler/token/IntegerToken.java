@@ -19,7 +19,7 @@ public class IntegerToken extends Token {
      * @param match La cadena casada
      */
     public IntegerToken(String match, int linenum) {
-        super(match, TokenType.INTEGER, linenum);
+        super(match, INTEGER, linenum);
         
         this.value = Integer.parseInt(match);
     }

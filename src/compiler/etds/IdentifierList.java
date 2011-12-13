@@ -20,7 +20,7 @@ public class IdentifierList extends AbstractETDS {
     @Override
     public void execute() throws CompilerException {
         
-        Token idtoken = expectType(TokenType.IDENTIFIER);
+        Token idtoken = expectType(Token.IDENTIFIER);
         RestIdentifierList rest = new RestIdentifierList(context);
         
         rest.execute();

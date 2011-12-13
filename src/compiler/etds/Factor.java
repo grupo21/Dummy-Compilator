@@ -22,17 +22,17 @@ class Factor extends AbstractETDS {
         Token token;
         
         try {
-            token = expectType(TokenType.IDENTIFIER);
+            token = expectType(Token.IDENTIFIER);
         } catch (SyntaxException e) {
             revert();
             
             try {
-                token = expectType(TokenType.INTEGER);
+                token = expectType(Token.INTEGER);
             } catch (SyntaxException ee) {
                 revert();
                 
                 try {
-                    token = expectType(TokenType.FLOAT);
+                    token = expectType(Token.FLOAT);
                 } catch (SyntaxException eee) {
                     revert();
                     

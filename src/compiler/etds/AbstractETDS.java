@@ -47,7 +47,7 @@ public abstract class AbstractETDS implements ETDS {
         Token token;
         
         if (!context.tokenizer.hasMoreElements()) {
-            throw new SyntaxException(null, 0, TokenType.toString(type));
+            throw new SyntaxException(null, 0, Token.toString(type));
         }
         
         if (!context.reverted) {
@@ -56,7 +56,7 @@ public abstract class AbstractETDS implements ETDS {
         
         context.reverted = false;
         
-        context.expectedList.add(TokenType.toString(type));
+        context.expectedList.add(Token.toString(type));
         
         try {
             token = context.tokenizer.nextElement();

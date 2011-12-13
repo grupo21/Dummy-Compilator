@@ -19,7 +19,7 @@ public class Variable extends AbstractETDS {
 
     @Override
     public void execute() throws CompilerException {
-        Token token = expectType(TokenType.IDENTIFIER, true);
+        Token token = expectType(Token.IDENTIFIER, true);
         var = getSymbol(token);
     }
     

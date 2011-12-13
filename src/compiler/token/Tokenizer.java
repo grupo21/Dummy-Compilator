@@ -111,13 +111,13 @@ public class Tokenizer {
                 /**
                  * Si es una palabra reservada se marca como tal.
                  */
-                if (TokenType.isReserved(idmatcher.group())) {
+                if (Token.isReserved(idmatcher.group())) {
                     /**
                      * Se guarda en la cola de tokens...
                      */
-                    cola.add(new Token(idmatcher.group(), TokenType.RESERVED, linenum));
+                    cola.add(new Token(idmatcher.group(), Token.RESERVED, linenum));
                 } else {
-                    cola.add(new Token(idmatcher.group(), TokenType.IDENTIFIER, linenum));
+                    cola.add(new Token(idmatcher.group(), Token.IDENTIFIER, linenum));
                 }
                 /**
                  * ... y se eliminan los carateres que han coincidido del string.
@@ -133,11 +133,11 @@ public class Tokenizer {
                 match = match.substring(intmatcher.end());
 
             } else if (doublematcher.lookingAt()) {
-                cola.add(new Token(doublematcher.group(), TokenType.SPECIALDOUBLE, linenum));
+                cola.add(new Token(doublematcher.group(), Token.SPECIALDOUBLE, linenum));
                 match = match.substring(doublematcher.end());
 
             } else if (specialmatcher.lookingAt()) {
-                cola.add(new Token(specialmatcher.group(), TokenType.SPECIALCHAR, linenum));
+                cola.add(new Token(specialmatcher.group(), Token.SPECIALCHAR, linenum));
                 match = match.substring(specialmatcher.end());
 
             } else {
@@ -175,7 +175,7 @@ public class Tokenizer {
 
     private boolean skipComments() throws IOException, LexicException {
         if (current().equals("{")) {
-            cola.add(new Token("{", TokenType.SPECIALCHAR, tokenizer.lineno()));
+            cola.add(new Token("{", Token.SPECIALCHAR, tokenizer.lineno()));
             if (tokenizer.nextToken() != StreamTokenizer.TT_EOF && current().equals("*")) {
                 cola.removeLast();
 
@@ -206,8 +206,7 @@ public class Tokenizer {
             return tokenizer.nval+"";
             
         } else {
-            char[] bytes = {(char) tokenizer.ttype};
-            return new String(bytes);
+            return new String(new char[] {(char) tokenizer.ttype});
         }
     }
 }

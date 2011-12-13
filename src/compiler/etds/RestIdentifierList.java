@@ -31,7 +31,7 @@ public class RestIdentifierList extends AbstractETDS {
             return;
         }
         
-        Token idtoken = expectType(TokenType.IDENTIFIER);
+        Token idtoken = expectType(Token.IDENTIFIER);
         RestIdentifierList rest = new RestIdentifierList(context);
         
         rest.execute();

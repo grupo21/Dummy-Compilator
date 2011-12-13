@@ -1,5 +1,7 @@
 package compiler.token;
 
+import java.util.*;
+
 /**
  * Clase que representa a un Token y su información
  * @author Jon Aguirre <jaguirre026@ehu.es>
@@ -7,6 +9,55 @@ package compiler.token;
  * @author Gorka Maiztegi <gmaiztegi001@ehu.es>
  */
 public class Token implements Cloneable {
+    
+    
+    public static final int RESERVED = 0;
+    public static final int IDENTIFIER = 1;
+    public static final int INTEGER = 2;
+    public static final int FLOAT = 3;
+    public static final int SPECIALDOUBLE = 4;
+    public static final int SPECIALCHAR = 5;
+    
+    public static final Set<String> RESERVEDWORDS =
+            new HashSet<String>(Arrays.asList(new String[] {"var", "begin","endprogram", "program", "integer", "float", "procedure",
+        "endprocedure", "is", "in", "out", "then", "if", "else", "endif",
+        "repeat", "until", "endrepeat", "to", "for", "ascending", "descending",
+        "from", "do", "endfor", "get", "put_line", "while", "endwhile"}));
+
+    /**
+     * Devuelve la representación en string del tipo num, para poder ser impreso
+     * y hacer una traza.
+     * @param num El identificador del tipo.
+     * @return La representación en String del Tipo.
+     */
+    public static String toString(int tipo) {
+        switch (tipo) {
+            case RESERVED:
+                return "reservada";
+            case IDENTIFIER:
+                return "identificador";
+            case INTEGER:
+                return "entero";
+            case FLOAT:
+                return "real";
+            case SPECIALDOUBLE:
+                return "especial doble";
+            case SPECIALCHAR:
+                return "caracter especial";
+            default:
+                return "desconocido";
+        }
+    }
+    
+    /**
+     * Comprueba si el identificador id es una palabra reservada, utilizando
+     * una tabla de todas las palabras reservadas.
+     * @param id El identificador a analizar.
+     * @return True si id es una palabra reservada, falso en caso contrario.
+     */
+    public static boolean isReserved(String id) {
+        return RESERVEDWORDS.contains(id);
+    }
     
     private String match;
     private int type, linenum;
@@ -37,7 +88,7 @@ public class Token implements Cloneable {
      */
     public String getInfo()
     {
-        return match + "\t\t" + TokenType.toString(type);
+        return match + "\t\t" + toString(type);
     }
     
     /**
