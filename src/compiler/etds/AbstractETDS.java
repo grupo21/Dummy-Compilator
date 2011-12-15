@@ -46,17 +46,11 @@ public abstract class AbstractETDS implements ETDS {
     protected Token expectType(int type, boolean soft) throws SyntaxException, LexicException {
         Token token;
         
-        if (!context.tokenizer.hasMoreElements()) {
-            throw new SyntaxException(null, 0, Token.toString(type));
-        }
-        
-        if (!context.reverted) {
-            context.expectedList.clear();
-        }
-        
-        context.reverted = false;
-        
         context.expectedList.add(Token.toString(type));
+        
+        if (!context.tokenizer.hasMoreElements()) {
+            throw new SyntaxException(null, 0, context.expectedList);
+        }
         
         try {
             token = context.tokenizer.nextElement();
@@ -70,9 +64,10 @@ public abstract class AbstractETDS implements ETDS {
             } else {
                 throw new SyntaxException(token.getMatch(), token.getLineNumber(), context.expectedList);
             }
+        } else {
+            context.expectedList.clear();
+            return token;
         }
-        
-        return token;
     }
     
     protected Token expectString(String str) throws SyntaxException, LexicException {
@@ -90,18 +85,11 @@ public abstract class AbstractETDS implements ETDS {
     protected Token expectString(String str, boolean soft) throws SyntaxException, LexicException {
         Token token;
         
+        context.expectedList.add(str);
         
         if (!context.tokenizer.hasMoreElements()) {
             throw new SyntaxException(null, 0, str);
         }
-        
-        if (!context.reverted) {
-            context.expectedList.clear();
-        }
-        
-        context.reverted = false;
-        
-        context.expectedList.add(str);
         
         try {
             token = context.tokenizer.nextElement();
@@ -115,9 +103,10 @@ public abstract class AbstractETDS implements ETDS {
             } else {
                 throw new SyntaxException(token.getMatch(), token.getLineNumber(), context.expectedList);
             }
+        } else {
+            context.expectedList.clear();
+            return token;
         }
-        
-        return token;
     }
     
     /**
@@ -139,7 +128,6 @@ public abstract class AbstractETDS implements ETDS {
      * @see compiler.token.Tokenizer#revert() 
      */
     protected void revert() {
-        context.reverted = true;
         context.tokenizer.revert();
     }
     

@@ -21,7 +21,6 @@ public class CompilerContext {
     public SymbolTable symbolTable;
     
     public List<String> expectedList;
-    public boolean reverted;
     
     protected PrintWriter output;
     
@@ -35,7 +34,6 @@ public class CompilerContext {
         this.symbolTable = new SymbolTable();
         this.instructionList = new InstructionList();
         this.expectedList = new LinkedList<String>();
-        this.reverted = false;
         this.output = new PrintWriter(output, true);
     }
     
