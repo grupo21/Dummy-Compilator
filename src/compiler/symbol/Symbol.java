@@ -30,9 +30,9 @@ public class Symbol {
         }
     }
     
-    protected String name;
-    protected int type;
-    protected int lineNum;
+    private String name;
+    private int type;
+    private int lineNum;
     
     /**
      * Contruye una variable con su nombre y tipo.

@@ -14,9 +14,9 @@ import java.util.Map;
  */
 public class SymbolTable implements Iterable<String> {
     
-    protected Map<String, Symbol> table;
-    protected Deque<String> context;
-    protected int tempCounter, contextCounter;
+    private Map<String, Symbol> table;
+    private Deque<String> context;
+    private int tempCounter, contextCounter;
     
     /**
      * Inicializa la tabla de símbolos
