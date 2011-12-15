@@ -142,7 +142,7 @@ public class Tokenizer {
                 /**
                  * Si nada ha coincidido se sale del programa con un error.
                  */
-                throw new LexicException("Error de léxico: carácter raro.");
+                throw new LexicException("Error de léxico: carácter raro: "+match);
             }
         }
 
@@ -172,9 +172,9 @@ public class Tokenizer {
 
     private boolean skipComments() throws IOException, LexicException {
         if (current().equals("{")) {
-            cola.add(new Token("{", Token.SPECIALCHAR, tokenizer.lineno()));
+            //cola.add(new Token("{", Token.SPECIALCHAR, tokenizer.lineno()));
             if (tokenizer.nextToken() != StreamTokenizer.TT_EOF && current().equals("*")) {
-                cola.removeLast();
+                //cola.removeLast();
 
                 while (tokenizer.nextToken() != StreamTokenizer.TT_EOF) {
                     boolean asteriscfound = false;
@@ -190,6 +190,8 @@ public class Tokenizer {
 
                 throw new LexicException("Comentario no cerrado al final del fichero.");
             }
+            
+            throw new LexicException("Error de léxico: carácter raro: {");
         }
 
         return false;
